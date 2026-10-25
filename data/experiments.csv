@@ -1,0 +1,201 @@
+﻿id,date,plant_zh,plant_en,scope,mag,mag_approx,variable,method,method_en,humidity,temp,light,watered_ago_hours,outcome,outcome_en,flags,yolo_id,note
+1,2025-12-10,鴨拓草,Inchplant,MICROTECH,1000,0,水,噴水,spray,,,450 nm / 660 nm,,明顯(空白),Visible,溫濕度未記錄,1,濕度溫度無紀錄
+2,2025-12-10,鴨拓草,Inchplant,MICROTECH,1000,0,水,噴水,spray,,,450 nm / 660 nm,,明顯(空白),Visible,溫濕度未記錄,2,濕度溫度無紀錄
+3,2025-12-10,鴨拓草,Inchplant,MICROTECH,500,0,水,噴水,spray,,,450 nm / 660 nm,,明顯(空白),Visible,溫濕度未記錄,3,濕度溫度無紀錄
+4,2025-12-17,鴨拓草,Inchplant,MICROTECH,500,0,水,噴水,spray,56,24,450 nm / 660 nm,168,不明顯,Subtle,,,開關不明顯（約一週未澆水）
+5,2025-12-17,鴨拓草,Inchplant,MICROTECH,500,0,水,噴水,spray,56,24,450 nm / 660 nm,168,不明顯,Subtle,,,開關不明顯（約一週未澆水）
+6,2025-12-17,鴨拓草,Inchplant,MICROTECH,500,0,水,噴水,spray,56,24,450 nm / 660 nm,168,不明顯,Subtle,,,開關不明顯（約一週未澆水）
+7,2025-12-17,鴨拓草,Inchplant,MICROTECH,500,0,水,噴水,spray,56,24,450 nm / 660 nm,168,不明顯,Subtle,,,開關不明顯（約一週未澆水）
+8,2025-12-17,鴨拓草,Inchplant,MICROTECH,200,0,水,噴水,spray,56,24,450 nm / 660 nm,,未記錄,Unrecorded,,,
+9,2025-12-17,鴨拓草,Inchplant,MICROTECH,500,0,水,噴水,spray,56,24,450 nm / 660 nm,168,不明顯,Subtle,,,開關不明顯（約一週未澆水）
+10,2025-12-17,鴨拓草,Inchplant,MICROTECH,500,0,水,噴水,spray,56,24,450 nm / 660 nm,0,不明顯,Subtle,,,開關不明顯（剛澆完水）
+11,2025-12-17,紫錦草,Purple heart,MICROTECH,500,0,水,噴水,spray,56,25,450 nm / 660 nm,168,不明顯,Subtle,自然斷枝,,自然斷枝之葉片，開關不明顯（約一週未澆水）
+12,2025-12-17,紫錦草,Purple heart,MICROTECH,500,0,水,浸泡,soak,56,25,450 nm / 660 nm,168,不明顯,Subtle,自然斷枝,,自然斷枝之葉片，開關不明顯（約一週未澆水）
+13,2025-12-18,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,60,25,450 nm / 660 nm,168,無明顯,None,自然斷枝,,自然斷枝之葉片，無明顯開關（約一週未澆水）
+14,2025-12-18,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,60,25,450 nm / 660 nm,,明顯(空白),Visible,蟲害,4,蟲害葉片
+15,2025-12-18,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,60,25,450 nm / 660 nm,,無明顯,None,正常葉片,,正常葉片，無明顯開關
+16,2025-12-18,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,60,25,450 nm / 660 nm,,不明顯,Subtle,正常葉片,,正常葉片，開關不明顯
+17,2025-12-18,鴨拓草,Inchplant,MICROTECH,500,0,水,刷毛,brush,61,25,450 nm / 660 nm,,未記錄,Unrecorded,,5,
+18,2025-12-23,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,61,25,450 nm / 660 nm,120,不明顯,Subtle,疑似氣體排出,,觀察到疑似氣體排出，後續氣孔些微打開（約五天未澆水）
+19,2025-12-23,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,61,25,450 nm / 660 nm,120,不明顯,Subtle,,,開關不明顯（約五天未澆水）
+20,2025-12-23,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,61,25,450 nm / 660 nm,120,不明顯,Subtle,,,開關不明顯（約五天未澆水）
+21,2025-12-23,紫錦草,Purple heart,MICROTECH,500,0,光照,手機手電筒,phone flashlight,61,25,450 nm / 660 nm,120,明顯(空白),Visible,,6,（約五天未澆水）
+22,2025-12-23,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,60,25,450 nm / 660 nm,144,明顯(空白),Visible,,7,（約六天未澆水）
+23,2025-12-24,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,62,25,450 nm / 660 nm,168,不明顯,Subtle,前一日剪下,,開關不明顯（約一週未澆水，昨日剪下之葉片）
+24,2025-12-24,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,62,25,450 nm / 660 nm,144,不明顯,Subtle,前一日剪下,,開關不明顯（約六天未澆水，昨日剪下之葉片）
+25,2025-12-24,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,62,25,450 nm / 660 nm,144,明顯(空白),Visible,,8,（約六天未澆水）
+26,2025-12-24,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,62,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關（約一週未澆水）
+27,2025-12-24,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,62,25,450 nm / 660 nm,168,明顯(空白),Visible,,9,（約一週未澆水）
+28,2025-12-24,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,62,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關（約一週未澆水）
+29,2025-12-24,扶桑花,Chinese hibiscus,MICROTECH,1000,0,光照,手機手電筒,phone flashlight,62,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關（約一週未澆水）
+30,2025-12-24,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,62,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關（約一週未澆水）
+31,2025-12-24,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,62,25,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯（約六天未澆水）
+32,2025-12-24,鴨拓草,Inchplant,MICROTECH,500,0,水,刷毛,brush,62,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關（約一週未澆水）
+33,2025-12-24,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,62,25,450 nm / 660 nm,0,明顯(空白),Visible,,10,剛澆完水
+34,2025-12-29,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,不明顯,Subtle,,,開關不明顯（約五天未澆水）
+35,2025-12-29,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,明顯(空白),Visible,,,（約五天未澆水）
+36,2025-12-29,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,明顯(空白),Visible,,11,（約五天未澆水）
+37,2025-12-29,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,不明顯,Subtle,,,開關不明顯（約五天未澆水）
+38,2025-12-29,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,明顯(空白),Visible,,12,（約五天未澆水）
+39,2025-12-29,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,不明顯,Subtle,,,開關不明顯（約五天未澆水）
+40,2025-12-29,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,無明顯,None,,,無開關明顯（約五天未澆水）
+41,2025-12-29,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,59,23,450 nm / 660 nm,120,明顯(空白),Visible,,,（約五天未澆水）
+42,2025-12-30,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,66,24,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯（約六天未澆水）
+43,2025-12-30,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,66,24,450 nm / 660 nm,144,明顯(空白),Visible,,13,（約六天未澆水）
+44,2025-12-30,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,66,24,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯（約六天未澆水）
+45,2025-12-30,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,66,24,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯（約六天未澆水）
+46,2025-12-30,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,66,24,450 nm / 660 nm,144,無明顯,None,,,無明顯開關（約六天未澆水）
+47,2025-12-30,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,66,24,450 nm / 660 nm,144,明顯(空白),Visible,,14,（約六天未澆水）
+48,2025-12-30,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,66,24,450 nm / 660 nm,0,明顯(空白),Visible,,15,（剛澆完水）
+49,2026-01-06,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,54,23,450 nm / 660 nm,0,不明顯,Subtle,,,開關不明顯（剛澆完水）
+50,2026-01-06,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,54,23,450 nm / 660 nm,1.5,無明顯,None,,,無明顯開關（澆完水約 1.5 小時）
+51,2026-01-06,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,54,23,450 nm / 660 nm,2,明顯(空白),Visible,,16,（澆完水約 2 小時）
+52,2026-01-06,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,54,23,450 nm / 660 nm,3,無明顯,None,,,無明顯開關（澆完水約 3 小時）
+53,2026-01-06,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,54,23,450 nm / 660 nm,4,無明顯,None,,,無明顯開關（澆完水約 4 小時）
+54,2026-01-06,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,54,23,450 nm / 660 nm,4.5,無明顯,None,,,無明顯開關（澆完水約 4.5 小時）
+55,2026-01-07,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,42,22,450 nm / 660 nm,24,無明顯,None,,,無明顯開關（澆完水約一天）
+56,2026-01-07,扶桑花,Chinese hibiscus,MICROTECH,1000,0,水,刷毛,brush,41,22,450 nm / 660 nm,24,無明顯,None,部分氣孔已微開,,無明顯開關，兩個氣孔已微開（澆完水約一天）
+57,2026-01-07,佛羅里達蔓綠絨,Philodendron 'Florida',MICROTECH,1000,0,水,刷毛,brush,40,22,450 nm / 660 nm,24,無明顯,None,植株狀況不佳,,無明顯開關，似乎花盆底部積水過濕快死亡（澆完水約一天）
+58,2026-01-07,紫錦草,Purple heart,MICROTECH,500,0,水,浸泡 5 秒 + 刷毛,soak 5 s + brush,40,22,450 nm / 660 nm,24,明顯(空白),Visible,,,（澆完水約一天）
+59,2026-01-07,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,40,22,450 nm / 660 nm,24,明顯(空白),Visible,,17,（澆完水約一天）
+60,2026-01-07,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,42,22,450 nm / 660 nm,24,明顯(空白),Visible,,18,（澆完水約一天）
+61,2026-01-07,扶桑花,Chinese hibiscus,MICROTECH,1000,0,光照,藍光,blue light,42,22,450 nm / 660 nm,24,明顯(空白),Visible,,,（澆完水約一天）
+62,2026-01-07,扶桑花,Chinese hibiscus,MICROTECH,1000,0,光照,藍光,blue light,42,22,450 nm / 660 nm,24,明顯(空白),Visible,,,（澆完水約一天）
+63,2026-01-08,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,43,22,450 nm / 660 nm,48,明顯(空白),Visible,,19,（澆完水約兩天）
+64,2026-01-08,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,43,22,450 nm / 660 nm,48,顯著,Striking,,20,效果顯著（澆完水約兩天）
+65,2026-01-08,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,43,22,450 nm / 660 nm,48,顯著,Striking,,21,效果顯著（澆完水約兩天）
+66,2026-01-09,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,46,25,450 nm / 660 nm,72,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約三天） (藍光燈電力微弱)
+67,2026-01-09,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,44,25,450 nm / 660 nm,72,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約三天） (藍光燈電力微弱)
+68,2026-01-09,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,44,25,450 nm / 660 nm,72,明顯(空白),Visible,藍光電力微弱,22,（澆完水約三天） (藍光燈電力微弱)
+69,2026-01-09,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,40,26,450 nm / 660 nm,72,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約三天） (藍光燈電力微弱)
+70,2026-01-09,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,40,27,450 nm / 660 nm,72,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約三天） (藍光燈電力微弱)
+71,2026-01-09,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,38,26,450 nm / 660 nm,72,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約三天） (藍光燈電力微弱)
+72,2026-01-09,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,39,27,450 nm / 660 nm,72,明顯(空白),Visible,藍光電力微弱,23,（澆完水約三天） (藍光燈電力微弱)
+73,2026-01-09,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,41,27,450 nm / 660 nm,72,不明顯,Subtle,藍光電力微弱,,開關不明顯（澆完水約三天） (藍光燈電力微弱)
+74,2026-01-09,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,42,27,450 nm / 660 nm,72,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約三天） (藍光燈電力微弱)
+75,2026-01-09,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,42,27,450 nm / 660 nm,72,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約三天） (藍光燈電力微弱)
+76,2026-01-09,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,39,27,450 nm / 660 nm,72,無明顯,None,,,無明顯開關（澆完水約三天）
+77,2026-01-12,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,45,25,450 nm / 660 nm,144,明顯(空白),Visible,藍光電力微弱,,（澆完水約六天） (藍光燈電力微弱)
+78,2026-01-12,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,42,26,450 nm / 660 nm,144,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約六天） (藍光燈電力微弱)
+79,2026-01-12,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,42,26,450 nm / 660 nm,144,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約六天） (藍光燈電力微弱)
+80,2026-01-12,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,42,26,450 nm / 660 nm,144,不明顯,Subtle,藍光電力微弱,,開關不明顯（澆完水約六天） (藍光燈電力微弱)
+81,2026-01-12,鴨拓草,Inchplant,MICROTECH,500,0,光照,白光,white light,44,27,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯（澆完水約六天）
+82,2026-01-12,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,41,26,450 nm / 660 nm,144,不明顯,Subtle,藍光電力微弱,,開關不明顯（澆完水約六天） (藍光燈電力微弱)
+83,2026-01-12,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,42,26,450 nm / 660 nm,144,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約六天） (藍光燈電力微弱)
+84,2026-01-12,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,42,26,450 nm / 660 nm,144,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約六天） (藍光燈電力微弱)
+85,2026-01-12,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,42,26,450 nm / 660 nm,144,無明顯,None,藍光電力微弱,,無明顯開關（澆完水約六天） (藍光燈電力微弱)
+86,2026-01-12,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,47,25,450 nm / 660 nm,144,不明顯,Subtle,藍光電力微弱,,開關不明顯（澆完水約六天） (藍光燈電力微弱)
+87,2026-01-13,鴨拓草,Inchplant,MICROTECH,500,0,光照,白光,white light,48,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關（澆完水約七天）
+88,2026-01-13,紫錦草,Purple heart,MICROTECH,500,0,水,浸泡 5 秒,soak 5 s,48,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關（澆完水約七天）
+89,2026-01-13,紫錦草,Purple heart,MICROTECH,500,0,水,刷毛,brush,49,25,450 nm / 660 nm,168,明顯(空白),Visible,,24,（澆完水約七天）
+90,2026-01-13,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,49,25,450 nm / 660 nm,168,不明顯,Subtle,藍光電力微弱,,開關不明顯（澆完水約七天） (藍光燈電力微弱)
+91,2026-01-13,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,49,25,450 nm / 660 nm,168,不明顯,Subtle,更換電池,,開關不明顯（澆完水約七天） (更換完藍光燈電池)
+92,2026-01-13,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,49,25,450 nm / 660 nm,168,不明顯,Subtle,更換電池,,開關不明顯（澆完水約七天） (更換完藍光燈電池)
+93,2026-01-13,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,49,25,450 nm / 660 nm,168,無明顯,None,更換電池,,無明顯開關（澆完水約七天） (更換完藍光燈電池)
+94,2026-01-14,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,52,24,450 nm / 660 nm,18,不明顯,Subtle,更換電池;錄影檔毀損,,開關不明顯 （澆完水約 18 小時） (更換完藍光燈電池) （電腦剛開機常錄影到一半沒反應，前十分鐘錄影檔毀損）
+95,2026-01-14,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,50,25,450 nm / 660 nm,18.5,明顯(空白),Visible,更換電池,25,（澆完水約 18.5 小時） (更換完藍光燈電池)
+96,2026-01-14,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,50,25,450 nm / 660 nm,20,顯著,Striking,更換電池,26,效果顯著 （澆完水約 20 小時） (更換完藍光燈電池)
+97,2026-01-14,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,50,25,450 nm / 660 nm,20.5,明顯(空白),Visible,更換電池,27,（澆完水約 20.5 小時） (更換完藍光燈電池)
+98,2026-01-14,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,50,25,450 nm / 660 nm,22,顯著,Striking,更換電池,28,效果顯著 （澆完水約 22 小時） (更換完藍光燈電池)
+99,2026-01-14,扶桑花,Chinese hibiscus,MICROTECH,500,0,光照,藍光,blue light,51,25,450 nm / 660 nm,22.5,無明顯,None,更換電池,,無明顯開關 （澆完水約 22.5 小時） (更換完藍光燈電池)
+100,2026-01-14,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,51,25,450 nm / 660 nm,23,不明顯,Subtle,更換電池,,開關不明顯 （澆完水約 23 小時） (更換完藍光燈電池)
+101,2026-01-14,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,50,25,450 nm / 660 nm,24,無明顯,None,更換電池,,無明顯開關 （澆完水約一天） (更換完藍光燈電池)
+102,2026-01-15,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,明顯(空白),Visible,更換電池,29,（澆完水約兩天） (更換完藍光燈電池)
+103,2026-01-15,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,53,25,450 nm / 660 nm,48,明顯(空白),Visible,更換電池,30,（澆完水約兩天） (更換完藍光燈電池)
+104,2026-01-15,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,顯著,Striking,更換電池,31,效果顯著 （澆完水約兩天） (更換完藍光燈電池)
+105,2026-01-15,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,不明顯,Subtle,藍光電力下降,,開關不明顯 （澆完水約兩天） (藍光燈電力開始下降)
+106,2026-01-15,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,無明顯,None,藍光電力微弱,,無明顯開關 （澆完水約兩天） (藍光燈電力低)
+107,2026-01-15,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,明顯(空白),Visible,更換電池,32,（澆完水約兩天） (更換完藍光燈電池)
+108,2026-01-15,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,無明顯,None,更換電池,,無明顯開關 （澆完水約兩天） (更換完藍光燈電池)
+109,2026-01-15,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,不明顯,Subtle,更換電池,,開關不明顯 （澆完水約兩天） (更換完藍光燈電池)
+110,2026-01-15,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,48,顯著,Striking,更換電池,33,效果顯著 （澆完水約兩天） (更換完藍光燈電池)
+111,2026-01-16,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,52,25,450 nm / 660 nm,72,無明顯,None,更換電池;錄影檔毀損,,無明顯開關 （澆完水約三天） (更換完藍光燈電池) （電腦剛開機常錄影到一半沒反應，前十分鐘錄影檔毀損）
+112,2026-01-16,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,55,25,450 nm / 660 nm,72,不明顯,Subtle,更換電池,,開關不明顯 （澆完水約三天） (更換完藍光燈電池）
+113,2026-01-16,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,55,25,450 nm / 660 nm,72,明顯(空白),Visible,更換電池,,（澆完水約三天） (更換完藍光燈電池）
+114,2026-01-16,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,55,25,450 nm / 660 nm,72,明顯(空白),Visible,更換電池,,（澆完水約三天） (更換完藍光燈電池）
+115,2026-01-16,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,55,25,450 nm / 660 nm,72,明顯(空白),Visible,更換電池,34,（澆完水約三天） (更換完藍光燈電池）
+116,2026-01-16,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,56,25,450 nm / 660 nm,72,明顯(空白),Visible,更換電池,35,（澆完水約三天） (更換完藍光燈電池）
+117,2026-01-16,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,56,25,450 nm / 660 nm,72,不明顯,Subtle,更換電池,,開關不明顯 （澆完水約三天） (更換完藍光燈電池）
+118,2026-01-16,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,57,25,450 nm / 660 nm,72,顯著,Striking,更換電池,36,效果顯著 （澆完水約三天） (更換完藍光燈電池）
+119,2026-01-16,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,58,25,450 nm / 660 nm,72,顯著,Striking,藍光電力下降;新葉,37,效果顯著 （澆完水約三天） (藍光燈電力開始下降) 目測是較新的葉片，藍光燈微弱下氣孔仍有顯著打開 藍光燈拿掉後也沒有很快關閉，甚至還有打得更開的跡象 也許新葉生命力比較活潑
+120,2026-01-19,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,56,25,450 nm / 660 nm,144,明顯(空白),Visible,,38,（澆完水約六天）
+121,2026-01-19,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,58,25,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯 （澆完水約六天）
+122,2026-01-19,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,61,24,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約六天）
+123,2026-01-19,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,61,25,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯 （澆完水約六天）
+124,2026-01-27,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,61,24,450 nm / 660 nm,192,不明顯,Subtle,,,開關不明顯 （澆完水約八天）
+125,2026-01-27,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,61,24,450 nm / 660 nm,192,不明顯,Subtle,,,開關不明顯 （澆完水約八天）
+126,2026-01-27,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,61,24,450 nm / 660 nm,192,明顯(空白),Visible,,,（澆完水約八天）
+127,2026-01-27,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,60,24,450 nm / 660 nm,192,無明顯,None,藍光電力下降,,無明顯開關 （澆完水約八天） (藍光燈電力開始下降)
+128,2026-01-27,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,60,25,450 nm / 660 nm,192,無明顯,None,更換電池,,無明顯開關 （澆完水約八天） (更換完藍光燈電池）
+129,2026-01-27,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,60,25,450 nm / 660 nm,192,顯著,Striking,更換電池,39,效果顯著 （澆完水約八天） (更換完藍光燈電池）
+130,2026-01-27,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,60,25,450 nm / 660 nm,0.5,明顯(空白),Visible,,,（澆完水約 0.5 小時）
+131,2026-01-28,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,57,25,450 nm / 660 nm,18.5,明顯(空白),Visible,,40,（澆完水約 18.5 小時）
+132,2026-01-28,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,58,25,450 nm / 660 nm,19,無明顯,None,,,無明顯開關 （澆完水約 19 小時）
+133,2026-01-28,紫錦草,Purple heart,MICROTECH,500,0,光照,藍光,blue light,58,25,450 nm / 660 nm,19.5,無明顯,None,,,無明顯開關 （澆完水約 19.5 小時）
+134,2026-01-28,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,58,25,450 nm / 660 nm,20,顯著,Striking,,41,效果顯著 （澆完水約 20 小時）
+135,2026-01-28,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,58,25,450 nm / 660 nm,21,明顯(空白),Visible,,42,（澆完水約 21 小時）
+136,2026-01-28,鴨拓草,Inchplant,MICROTECH,500,0,光照,藍光,blue light,59,24,450 nm / 660 nm,22,不明顯,Subtle,,,開關不明顯 （澆完水約 22 小時）
+137,2026-02-02,紫錦草,Purple heart,Dino-Lite,738,1,光照,藍光,blue light,58,24,450 nm / 660 nm,144,不明顯,Subtle,,43,開關緩慢 （澆完水約六天）
+138,2026-02-02,紫錦草,Purple heart,Dino-Lite,711,1,光照,藍光,blue light,58,24,450 nm / 660 nm,144,明顯(空白),Visible,,44,（澆完水約六天）
+139,2026-02-02,紫錦草,Purple heart,Dino-Lite,726,1,光照,藍光,blue light,58,24,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約六天）
+140,2026-02-02,紫錦草,Purple heart,Dino-Lite,712,1,光照,藍光,blue light,58,24,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約六天）
+141,2026-02-03,紫錦草,Purple heart,Dino-Lite,718,1,光照,藍光,blue light,58,24,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約七天）
+142,2026-02-03,紫錦草,Purple heart,Dino-Lite,727,1,光照,藍光,blue light,58,24,450 nm / 660 nm,168,不明顯,Subtle,藍光中途沒電,45,開關緩慢 藍光手電筒中途沒電 （澆完水約七天）
+143,2026-02-03,紫錦草,Purple heart,Dino-Lite,714,1,光照,藍光,blue light,58,24,450 nm / 660 nm,168,無明顯,None,更換電池,,無明顯開關 更換完藍光手電筒電池 （澆完水約七天）
+144,2026-02-03,鴨拓草,Inchplant,Dino-Lite,728,1,光照,藍光,blue light,58,24,450 nm / 660 nm,168,無明顯,None,更換電池,,無明顯開關 更換完藍光手電筒電池 （澆完水約七天）
+145,2026-02-03,鴨拓草,Inchplant,Dino-Lite,727,1,光照,藍光,blue light,56,24,450 nm / 660 nm,168,無明顯,None,更換電池,,無明顯開關 更換完藍光手電筒電池 （澆完水約七天）
+146,2026-02-03,鴨拓草,Inchplant,Dino-Lite,722,1,光照,藍光,blue light,55,24,450 nm / 660 nm,168,無明顯,None,更換電池,,無明顯開關 更換完藍光手電筒電池 （澆完水約七天）
+147,2026-02-03,紫錦草,Purple heart,Dino-Lite,728,1,光照,藍光,blue light,56,24,450 nm / 660 nm,168,明顯(空白),Visible,,46,（澆完水約七天）
+148,2026-02-03,紫錦草,Purple heart,Dino-Lite,717,1,光照,藍光,blue light,56,24,450 nm / 660 nm,168,不明顯,Subtle,,,開關不明顯 （澆完水約七天）
+149,2026-02-04,鴨拓草,Inchplant,Dino-Lite,711,1,光照,藍光,blue light,56,24,450 nm / 660 nm,16,無明顯,None,,,無明顯開關 （澆完水約 16 小時）
+150,2026-02-04,鴨拓草,Inchplant,Dino-Lite,732,1,光照,藍光,blue light,59,24,450 nm / 660 nm,16.5,無明顯,None,,,無明顯開關 （澆完水約 16.5 小時）
+151,2026-02-04,紫錦草,Purple heart,Dino-Lite,714,1,光照,藍光,blue light,61,24,450 nm / 660 nm,17.5,無明顯,None,藍光中途沒電,,無明顯開關 藍光手電筒中途沒電 （澆完水約 17.5 小時）
+152,2026-02-04,紫錦草,Purple heart,Dino-Lite,722,1,光照,藍光,blue light,62,24,450 nm / 660 nm,18,無明顯,None,更換電池,,無明顯開關 更換完藍光手電筒電池 （澆完水約 18 小時）
+153,2026-02-04,紫錦草,Purple heart,Dino-Lite,714,1,光照,藍光,blue light,59,24,450 nm / 660 nm,18.5,明顯(空白),Visible,更換電池;新葉,47,目測為新葉、葉片整體偏綠色 更換完藍光手電筒電池 （澆完水約 18.5 小時）
+154,2026-02-04,扶桑花,Chinese hibiscus,Dino-Lite,742,1,光照,藍光,blue light,62,24,450 nm / 660 nm,19.5,難以觀測,Hard to observe,,,難以觀測 （澆完水約 19.5 小時）
+155,2026-02-04,紫錦草,Purple heart,Dino-Lite,723,1,光照,藍光,blue light,59,24,450 nm / 660 nm,20,無明顯,None,,,無明顯開關 （澆完水約 20 小時）
+156,2026-02-04,紫錦草,Purple heart,Dino-Lite,737,1,光照,藍光,blue light,62,24,450 nm / 660 nm,20.5,無明顯,None,,,無明顯開關 （澆完水約 20.5 小時）
+157,2026-02-04,鴨拓草,Inchplant,Dino-Lite,729,1,光照,藍光,blue light,60,24,450 nm / 660 nm,21.5,無明顯,None,,,無明顯開關 （澆完水約 21.5 小時）
+158,2026-02-04,鴨拓草,Inchplant,Dino-Lite,715,1,光照,藍光,blue light,62,24,450 nm / 660 nm,22,無明顯,None,,,無明顯開關 （澆完水約 22 小時）
+159,2026-02-05,紫錦草,Purple heart,Dino-Lite,711,1,光照,藍光,blue light,59,24,450 nm / 660 nm,48,無明顯,None,,,無明顯開關 （澆完水約 2 天）
+160,2026-02-05,紫錦草,Purple heart,Dino-Lite,719,1,光照,藍光,blue light,62,24,450 nm / 660 nm,48,不明顯,Subtle,,,開關不明顯 （澆完水約 2 天）
+161,2026-02-05,紫錦草,Purple heart,Dino-Lite,716,1,光照,藍光,blue light,62,24,450 nm / 660 nm,48,無明顯,None,,,無明顯開關 （澆完水約 2 天）
+162,2026-02-05,紫錦草,Purple heart,Dino-Lite,717,1,光照,藍光,blue light,60,24,450 nm / 660 nm,48,無明顯,None,,,無明顯開關 （澆完水約 2 天）
+163,2026-02-06,紫錦草,Purple heart,Dino-Lite,719,1,光照,藍光,blue light,62,24,450 nm / 660 nm,48,無明顯,None,,,無明顯開關 （澆完水約 2 天）
+164,2026-02-06,紫錦草,Purple heart,Dino-Lite,742,1,光照,藍光,blue light,62,24,450 nm / 660 nm,48,顯著,Striking,,48,開關較緩慢但效果顯著 （澆完水約 2 天）
+165,2026-02-06,紫錦草,Purple heart,Dino-Lite,737,1,光照,藍光,blue light,62,24,450 nm / 660 nm,48,無明顯,None,,,無明顯開關 （澆完水約 2 天）
+166,2026-02-06,鴨拓草,Inchplant,Dino-Lite,722,1,光照,藍光,blue light,62,24,450 nm / 660 nm,48,無明顯,None,,,無明顯開關 （澆完水約 2 天）
+167,2026-02-06,鴨拓草,Inchplant,Dino-Lite,732,1,光照,藍光,blue light,62,24,450 nm / 660 nm,48,明顯(空白),Visible,,49,（澆完水約 2 天）
+168,2026-02-06,紫錦草,Purple heart,Dino-Lite,737,1,光照,藍光,blue light,63,24,450 nm / 660 nm,72,不明顯,Subtle,,,開關不明顯 （澆完水約 3 天）
+169,2026-02-06,紫錦草,Purple heart,Dino-Lite,732,1,光照,藍光,blue light,65,24,450 nm / 660 nm,72,無明顯,None,,,無明顯開關 （澆完水約 3 天）
+170,2026-02-06,紫錦草,Purple heart,Dino-Lite,721,1,光照,藍光,blue light,60,24,450 nm / 660 nm,72,不明顯,Subtle,,,開關不明顯 （澆完水約 3 天）
+171,2026-02-06,紫錦草,Purple heart,Dino-Lite,738,1,光照,藍光,blue light,65,24,450 nm / 660 nm,72,不明顯,Subtle,,,開關不明顯 （澆完水約 3 天）
+172,2026-02-06,紫錦草,Purple heart,Dino-Lite,729,1,光照,藍光,blue light,61,24,450 nm / 660 nm,72,顯著,Striking,,50,開關緩慢但顯著 （澆完水約 3 天）
+173,2026-02-06,紫錦草,Purple heart,Dino-Lite,739,1,光照,藍光,blue light,63,24,450 nm / 660 nm,72,不明顯,Subtle,,,開關不明顯 （澆完水約 3 天）
+174,2026-02-06,紫錦草,Purple heart,Dino-Lite,742,1,光照,藍光,blue light,65,24,450 nm / 660 nm,72,無明顯,None,,,無明顯開關 （澆完水約 3 天）
+175,2026-02-09,紫錦草,Purple heart,Dino-Lite,740,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約 6 天）
+176,2026-02-09,紫錦草,Purple heart,Dino-Lite,738,1,光照,藍光,blue light,51,25,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約 6 天）
+177,2026-02-09,紫錦草,Purple heart,Dino-Lite,742,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,不明顯,Subtle,,,開關不明顯 （澆完水約 6 天）
+178,2026-02-10,紫錦草,Purple heart,Dino-Lite,746,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約 6 天）
+179,2026-02-10,紫錦草,Purple heart,Dino-Lite,742,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,不明顯,Subtle,,,開關緩慢不明顯 （澆完水約 6 天）
+180,2026-02-10,紫錦草,Purple heart,Dino-Lite,738,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,不明顯,Subtle,,51,開關緩慢 （澆完水約 6 天）
+181,2026-02-10,紫錦草,Purple heart,Dino-Lite,732,1,光照,藍光,blue light,50,25,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約 6 天）
+182,2026-02-10,鴨拓草,Inchplant,Dino-Lite,733,1,光照,藍光,blue light,52,24,450 nm / 660 nm,144,待商榷,Uncertain,實驗前可能已開,52,可能實驗前氣孔已開，或無明顯開關 有待商榷 （澆完水約 6 天）
+183,2026-02-10,鴨拓草,Inchplant,Dino-Lite,731,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,待商榷,Uncertain,實驗前可能已開,53,可能實驗前氣孔已開 有待商榷 （澆完水約 6 天）
+184,2026-02-10,鴨拓草,Inchplant,Dino-Lite,718,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約 6 天）
+185,2026-02-10,鴨拓草,Inchplant,Dino-Lite,729,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,待商榷,Uncertain,實驗前可能已開,54,鎖定到一個疑似已開啟之氣孔有待商榷 其餘無明顯開關 （澆完水約 6 天）
+186,2026-02-10,鴨拓草,Inchplant,Dino-Lite,719,1,光照,藍光,blue light,52,25,450 nm / 660 nm,144,無明顯,None,,,無明顯開關 （澆完水約 6 天）
+187,2026-02-10,紫錦草,Purple heart,Dino-Lite,732,1,光照,藍光,blue light,54,24,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+188,2026-02-10,紫錦草,Purple heart,Dino-Lite,736,1,光照,藍光,blue light,52,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+189,2026-02-10,紫錦草,Purple heart,Dino-Lite,728,1,光照,藍光,blue light,52,26,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+190,2026-02-10,紫錦草,Purple heart,Dino-Lite,754,1,光照,藍光,blue light,51,26,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+191,2026-02-10,紫錦草,Purple heart,Dino-Lite,732,1,光照,藍光,blue light,51,26,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+192,2026-02-10,鴨拓草,Inchplant,Dino-Lite,729,1,光照,藍光,blue light,52,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+193,2026-02-10,鴨拓草,Inchplant,Dino-Lite,742,1,光照,藍光,blue light,53,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+194,2026-02-10,鴨拓草,Inchplant,Dino-Lite,721,1,光照,藍光,blue light,54,25,450 nm / 660 nm,168,不明顯,Subtle,,,開關緩慢不明顯 （澆完水約 7 天）
+195,2026-02-10,紫錦草,Purple heart,Dino-Lite,754,1,光照,藍光,blue light,54,25,450 nm / 660 nm,168,無明顯,None,植株狀況不佳;葉片綠化,,選擇綠化且軟垂嚴重之葉片測試氣孔反應度 無明顯開關 （澆完水約 7 天）
+196,2026-02-10,紫錦草,Purple heart,Dino-Lite,728,1,光照,藍光,blue light,55,25,450 nm / 660 nm,168,無明顯,None,葉片綠化,,選擇稍微綠化之葉片測試氣孔反應度 無明顯開關 （澆完水約 7 天）
+197,2026-02-11,紫錦草,Purple heart,Dino-Lite,727,1,光照,藍光,blue light,54,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+198,2026-02-11,紫錦草,Purple heart,Dino-Lite,734,1,光照,藍光,blue light,54,24,450 nm / 660 nm,168,顯著,Striking,藍色玻璃紙照明,55,開關緩慢但效果顯著 約 01:07:00 處拿掉藍光手電筒，僅使用套上藍色玻璃紙的顯微鏡 （澆完水約 7 天）
+199,2026-02-11,紫錦草,Purple heart,Dino-Lite,734,1,光照,藍光,blue light,54,24,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）
+200,2026-02-11,紫錦草,Purple heart,Dino-Lite,749,1,光照,藍光,blue light,55,25,450 nm / 660 nm,168,無明顯,None,,,無明顯開關 （澆完水約 7 天）

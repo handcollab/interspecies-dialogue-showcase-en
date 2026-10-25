@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Interspecies Dialogue · Showcase</title>
+<meta name="description" content="Interspecies Dialogue (三界共語) is a live work in which plants, a dancer and an AI speak as equals. The plant speaks by opening and closing its stomata; the AI answers with sound and images of its own making, without following the human narrative and without any human editing.">
+<meta name="theme-color" content="#090909">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Interspecies Dialogue">
+<meta property="og:site_name" content="Interspecies Dialogue">
+<meta property="og:description" content="A live work in which plants, a dancer and an AI speak as equals. The plant speaks through its stomata; the AI answers with sound and images of its own making.">
+<meta property="og:image" content="https://handcollab.github.io/interspecies-dialogue-showcase-en/assets/og.jpg">
+<meta property="og:url" content="https://handcollab.github.io/interspecies-dialogue-showcase-en/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_TW">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Interspecies Dialogue: a field of leaf stomata under the microscope.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Interspecies Dialogue">
+<meta name="twitter:image" content="https://handcollab.github.io/interspecies-dialogue-showcase-en/assets/og.jpg">
+<meta name="twitter:image:alt" content="Interspecies Dialogue: a field of leaf stomata under the microscope.">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="no-referrer">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://handcollab.github.io/interspecies-dialogue-showcase/">
+<link rel="alternate" hreflang="en" href="https://handcollab.github.io/interspecies-dialogue-showcase-en/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090909'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='7.5' fill='none' stroke='%23c8ff40' stroke-width='2.4'/%3E%3Cellipse cx='16' cy='16' rx='6' ry='1.6' fill='%23c8ff40'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- fonts load without blocking first paint (system fallbacks until they arrive). Latin Noto Sans / Noto Serif come first so English text
+     and its punctuation (curly quotes, ·, ×) get proportional glyphs; CJK names fall through to the TC families of the Chinese site -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@300;400;500&family=Noto+Serif:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;600;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@300;400;500&family=Noto+Serif:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;600;900&display=swap"></noscript>
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/thefilm.js"></script>
+<script>
+  // fail-safe: if the module never boots (old browser, blocked script), never leave the page behind the loader
+  document.documentElement.classList.add('js');
+  setTimeout(function () { if (!window.__sc) { document.documentElement.classList.remove('js'); document.body.classList.remove('is-loading'); var l = document.querySelector('.loader'); if (l) l.remove(); } }, 7000);
+</script>
+<script nomodule>document.addEventListener('DOMContentLoaded', function () { document.documentElement.classList.remove('js'); document.body.classList.remove('is-loading'); var l = document.querySelector('.loader'); if (l) l.remove(); });</script>
+</head>
+<body class="is-loading">
+<a class="skip" href="#main">Skip to content</a>
+<noscript><style>.loader{display:none}.reveal,.split{opacity:1!important;transform:none!important}</style><p class="noscript">Sound and video need JavaScript; all of the text can still be read.</p></noscript>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="field-fallback" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><i class="cursor-dot"></i><i class="cursor-ring"><b class="cursor-label"></b></i></div>
+
+<!-- ============ LOADER ============ -->
+<div class="loader" aria-hidden="true">
+  <div class="loader-eye">
+    <svg viewBox="0 0 200 200" class="loader-ring"><circle cx="100" cy="100" r="92" /><g class="ticks"></g></svg>
+    <div class="loader-pct mono"><span data-loader-pct>000</span><small>%</small></div>
+  </div>
+  <div class="loader-meta mono">
+    <span>FOCUSING…</span>
+    <span>MAG <b data-loader-mag>×200</b></span>
+    <span>SAMPLE <b data-loader-sample>0</b> / 28,800,000</span>
+  </div>
+</div>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <a class="brand magnetic" href="#top" data-cursor="TOP"><span class="brand-zh">Interspecies Dialogue</span><span class="brand-en" lang="zh-Hant">三界共語</span></a>
+  <nav class="nav" aria-label="Chapters">
+    <button class="nav-toggle mono" aria-expanded="false" aria-controls="nav-list">MENU</button>
+    <ol id="nav-list">
+      <li><a href="#plant" data-nav="plant"><i>01</i>Plant</a></li>
+      <li><a href="#sound" data-nav="sound"><i>02</i>Sound</a></li>
+      <li><a href="#image" data-nav="image"><i>03</i>Image</a></li>
+      <li><a href="#human" data-nav="human"><i>04</i>Human</a></li>
+      <li><a href="#process" data-nav="process"><i>05</i>Fusion</a></li>
+      <li><a href="#data" data-nav="data"><i>06</i>Data</a></li>
+      <li><a href="#credits" data-nav="credits"><i>07</i>Credits</a></li>
+    </ol>
+  </nav>
+  <a class="lang mono magnetic" href="https://handcollab.github.io/interspecies-dialogue-showcase/" hreflang="zh-Hant-TW" lang="zh-Hant" aria-label="中文版" data-cursor="中文"><span class="lang-cur" aria-hidden="true" lang="en">EN</span><b>中文</b></a>
+  <div class="readhead" aria-hidden="true"><i class="readhead-bar"></i><span class="readhead-count mono">SAMPLE <b data-readhead>0</b> / 28,800,000</span></div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero" data-palette="plant">
+  <div class="hero-inner">
+    <p class="eyebrow mono"><span class="c-lime">Plant</span> · <span class="c-ink">Human</span> · <span class="c-blue">AI</span></p>
+    <h1 class="title" aria-label="Interspecies Dialogue"><span class="ch" data-ch="Interspecies">Interspecies</span><span class="ch" data-ch="Dialogue">Dialogue</span></h1>
+    <p class="title-en" lang="zh-Hant" data-scramble="三界共語">三界共語</p>
+    <p class="hero-lead serif">Plants don’t use words,<br>nor do they make sounds we can hear.</p>
+    <p class="hero-lead-en"><span class="hero-cite mono">— from the documentary, “Statement” chapter</span></p>
+    <div class="hero-actions">
+      <button class="btn btn-listen magnetic" data-listen data-cursor="LISTEN">
+        <span class="btn-ico" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="btn-txt">Listen<small>SOUND OFF</small></span>
+      </button>
+      <a class="btn btn-ghost magnetic" href="#beats" data-cursor="SCROLL"><span class="btn-txt">Read on<small>SCROLL</small></span></a>
+    </div>
+    <p class="hero-hint mono">Sound stays off until you turn it on.<br><span class="dim">Press Listen to start; headphones recommended.</span></p>
+  </div>
+  <div class="hud hud-bl mono" aria-hidden="true">
+    <div><span>APERTURE</span><b data-hud="ap">00.0%</b></div>
+    <div><span>X · Y</span><b data-hud="xy">0000 · 0000 <span style="text-transform:none">μm</span></b></div>
+    <div><span>BASS / HIGH</span><b data-hud="bands">0.00 / 0.00</b></div>
+    <div><span>FRAME</span><b data-hud="fps">--</b></div>
+  </div>
+  <div class="hud hud-br mono" aria-hidden="true">
+    <div>10 DEC 2025 — 11 FEB 2026</div>
+    <div>HUNDREDS OF TRIALS · 200 CURATED SEGMENTS</div>
+    <div>4 SPECIES · 2 SCOPE TYPES</div>
+    <div class="dim">Move the cursor: nearby stomata open</div>
+  </div>
+  <div class="scroll-cue mono" aria-hidden="true"><i></i>SCROLL</div>
+</section>
+
+<!-- ============ STORY BEATS ============ -->
+<section id="beats" class="beats" data-pin aria-label="The story, in eight lines">
+  <div class="beats-sticky">
+    <div class="beats-count mono" aria-hidden="true"><b data-beat-idx>01</b> / 08</div>
+    <ol class="beats-list">
+      <li class="beat" data-mood="plant"><p class="beat-zh">Plants don’t use words.</p></li>
+      <li class="beat" data-mood="plant"><p class="beat-zh">They trade air and water with the world through the stomata on their leaves.</p></li>
+      <li class="beat" data-mood="plant"><p class="beat-zh">Two months, <em class="big-word">hundreds of trials</em>: under the microscope, we waited for them to open up.</p></li>
+      <li class="beat" data-mood="plant"><p class="beat-zh">From them we kept a curated <em class="big-num" data-count="200">200</em>.</p></li>
+      <li class="beat" data-mood="void"><p class="beat-zh">In <em class="big-num" data-count="83">83</em> of them, no clear opening or closing could be seen.</p></li>
+      <li class="beat" data-mood="ai"><p class="beat-zh">The AI heard the waiting as a <span class="glitchy" data-ch="timeout">timeout</span>, the breaking as an <span class="glitchy" data-ch="interrupt">interrupt</span>.</p></li>
+      <li class="beat" data-mood="human"><p class="beat-zh">The dancer wrote in hours of the day. The AI has only a sample count.</p></li>
+      <li class="beat" data-mood="fusion"><p class="beat-zh">Three parties, each speaking for itself. A misreading is an answer, too.</p></li>
+    </ol>
+    <div class="beats-rail" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<!-- ============ PREMISE ============ -->
+<section class="premise wrap" data-palette="plant">
+  <p class="label mono">The work</p>
+  <p class="premise-txt serif reveal">Interspecies Dialogue is a live piece of about 10 to 20 minutes. Plants, a dancer and an AI share one stage and speak as equals: the plant through the opening and closing of the stomata on its leaves, the dancer through the body, the AI through sound and images it generates itself. The work does not claim to have understood plants. Its subject is translation itself: the distance, the errors, and the chance to imagine anew inside those errors.</p>
+  <ul class="chips mono reveal">
+    <li><b>Live piece</b> 10–20 min</li><li><b>Microscope trials</b> hundreds</li><li><b>Curated segments</b> 200</li><li><b>Plant-sound ingredients</b> 10</li><li><b>AI side</b> zero hand edits</li>
+  </ul>
+</section>
+
+<!-- ============ GATE 01 PLANT ============ -->
+<section class="gate" data-gate="plant" data-palette="plant" aria-label="Chapter 1: Plant">
+  <div class="gate-sticky">
+    <div class="tear tear-top" aria-hidden="true"></div>
+    <div class="tear tear-bot" aria-hidden="true"></div>
+    <div class="gate-title">
+      <span class="gate-num mono">CHAPTER 01</span>
+      <h2 class="gate-h serif">Plant</h2>
+      <span class="gate-en mono">SPEAKING THROUGH STOMATA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANT ============ -->
+<section id="plant" class="plant" data-palette="plant">
+  <div class="wrap">
+    <p class="label mono">Plant</p>
+    <h2 class="h2 serif reveal">Stomata: how a leaf breathes</h2>
+    <div class="cols2">
+      <p class="body reveal">A leaf’s surface is covered in pores too small to see, called stomata. Each stoma is framed by a pair of guard cells. When the cells take up water and swell, the pore opens: carbon dioxide comes in, water vapour goes out. When they lose water, it closes. Light, temperature, humidity and water all affect whether it opens or closes.</p>
+      <p class="body reveal">This is how a plant breathes with the world, and the closest thing it has to language. So the plant’s “words” in this work come from real microscope footage: in a greenhouse, the research team watched the same leaf under a microscope for long stretches, waiting for its stomata to open. Over two months they ran hundreds of trials; the 200 segments on this site are a curated selection from them.</p>
+    </div>
+    <p class="period mono reveal">10 DEC 2025 — 11 FEB 2026</p>
+  </div>
+
+  <div class="stats wrap-wide">
+    <div class="stat stat-lead reveal"><b>Hundreds</b><span>of trials</span><small>TWO MONTHS OF MICROSCOPE TRIALS<em>This site holds a curated selection of 200 of them. Every segment count and percentage on this page is computed from those 200.</em></small></div>
+    <div class="stat reveal"><b data-count="200">200</b><span>segments</span><small>CURATED</small></div>
+    <div class="stat reveal"><b data-count="27">27</b><span>days</span><small>IN THE LAB</small></div>
+    <div class="stat reveal"><b data-count="4">4</b><span>species</span><small>PLANTS</small></div>
+    <div class="stat reveal"><b data-count="2">2</b><span>types</span><small>MICROSCOPES</small></div>
+    <div class="stat reveal"><b data-count="55">55</b><span>segments</span><small>ANNOTATED SECOND BY SECOND</small></div>
+    <div class="stat stat-hot reveal"><b data-count="13">13</b><span>segments</span><small>MARKED STRIKING</small></div>
+  </div>
+
+  <div class="species wrap-wide">
+    <article class="sp reveal" data-plant="0">
+      <div class="sp-img"><img loading="lazy" src="assets/lab/thumbs/micro-still-01-640.webp" alt="Purple heart leaf epidermis: stomata at 500× under blue light." width="640" height="360"></div>
+      <h3 class="serif">Purple heart <span class="mono" lang="zh-Hant">紫錦草</span></h3>
+      <p class="sp-n mono"><b>110</b> segments</p>
+      <p>The most-watched plant: 9 of the 13 “striking” segments are of it.</p>
+      <div class="sp-bar" data-plant-bar="0" aria-hidden="true"></div>
+    </article>
+    <article class="sp reveal" data-plant="1">
+      <div class="sp-img"><img loading="lazy" src="assets/lab/thumbs/micro-still-06-640.webp" alt="Inchplant leaf epidermis: stomata at 500× under blue light." width="640" height="360"></div>
+      <h3 class="serif">Inchplant <span class="mono" lang="zh-Hant">鴨跖草</span></h3>
+      <p class="sp-n mono"><b>63</b> segments</p>
+      <p>In the documentary’s “Experiment” chapter, a purple-backed inchplant is named the best partner for dialogue (presumably the same plant as the spreadsheet’s inchplant): distinct cell walls, translucent stomata, an intact structure.</p>
+      <div class="sp-bar" data-plant-bar="1" aria-hidden="true"></div>
+    </article>
+    <article class="sp reveal" data-plant="2">
+      <div class="sp-img"><img loading="lazy" src="assets/lab/thumbs/micro-still-10-640.webp" alt="Chinese hibiscus leaf epidermis at 1000×." width="640" height="360"></div>
+      <h3 class="serif">Chinese hibiscus <span class="mono" lang="zh-Hant">扶桑花</span></h3>
+      <p class="sp-n mono"><b>26</b> segments</p>
+      <p>Mostly observed at 1000×. Once the team switched to the handheld microscope it proved hard to observe, so later experiments focused on the other two.</p>
+      <div class="sp-bar" data-plant-bar="2" aria-hidden="true"></div>
+    </article>
+    <article class="sp reveal" data-plant="3">
+      <div class="sp-img"><img loading="lazy" src="assets/lab/thumbs/micro-still-13-640.webp" alt="Philodendron ‘Florida’ leaf epidermis at 1000×." width="640" height="360"></div>
+      <h3 class="serif">Philodendron ‘Florida’ <span class="mono" lang="zh-Hant">佛羅里達蔓綠絨</span></h3>
+      <p class="sp-n mono"><b>1</b> segment</p>
+      <p>No stomata can be seen in the frame; the moving-image versions use the cell centres instead as the points that open and close.</p>
+      <div class="sp-bar" data-plant-bar="3" aria-hidden="true"></div>
+    </article>
+    <p class="fine sp-note">English common names (presumed identifications), with the Chinese names the team uses; the spreadsheet writes inchplant as <span lang="zh-Hant">鴨拓草</span>.</p>
+  </div>
+  <div class="marquee" aria-label="Single frames of real microscope footage">
+    <p class="label mono wrap-wide">Raw microscope frames · ungraded</p>
+    <div class="marquee-track"><ul><li><img loading="lazy" src="assets/lab/thumbs/micro-still-01-640.webp" alt="Purple heart, 500×, blue light, at 45:00 in the recording." width="640" height="360"><span class="mono">Purple heart · 500× · blue light · 45:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-02-640.webp" alt="Purple heart, 500×, blue light, at 25:25 in the recording." width="640" height="360"><span class="mono">Purple heart · 500× · blue light · 25:25</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-03-640.webp" alt="Purple heart, 500×, water, at 15:00 in the recording." width="640" height="360"><span class="mono">Purple heart · 500× · water · 15:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-04-640.webp" alt="Purple heart, about 700×, blue light, at 16:46 in the recording." width="640" height="360"><span class="mono">Purple heart · ≈700× · blue light · 16:46</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-05-640.webp" alt="Purple heart, about 700×, blue light, at 55:00 in the recording." width="640" height="360"><span class="mono">Purple heart · ≈700× · blue light · 55:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-06-640.webp" alt="Inchplant, 500×, blue light, at 25:00 in the recording." width="640" height="360"><span class="mono">Inchplant · 500× · blue light · 25:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-07-640.webp" alt="Inchplant, 500×, blue light, at 09:50 in the recording." width="640" height="360"><span class="mono">Inchplant · 500× · blue light · 09:50</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-08-640.webp" alt="Inchplant, 500×, water, at 15:01 in the recording." width="640" height="360"><span class="mono">Inchplant · 500× · water · 15:01</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-09-640.webp" alt="Inchplant, about 700×, blue light, at 15:15 in the recording." width="640" height="360"><span class="mono">Inchplant · ≈700× · blue light · 15:15</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-10-640.webp" alt="Hibiscus, 1000×, water, at 04:16 in the recording." width="640" height="360"><span class="mono">Hibiscus · 1000× · water · 04:16</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-11-640.webp" alt="Hibiscus, 1000×, blue light, at 19:17 in the recording." width="640" height="360"><span class="mono">Hibiscus · 1000× · blue light · 19:17</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-12-640.webp" alt="Hibiscus, about 700×, blue light, at 06:03 in the recording." width="640" height="360"><span class="mono">Hibiscus · ≈700× · blue light · 06:03</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-13-640.webp" alt="Philodendron ‘Florida’, 1000×, water, at 10:00 in the recording." width="640" height="360"><span class="mono">Philodendron ‘Florida’ · 1000× · water · 10:00</span></li></ul><ul aria-hidden="true"><li><img loading="lazy" src="assets/lab/thumbs/micro-still-01-640.webp" alt="Purple heart, 500×, blue light, at 45:00 in the recording." width="640" height="360"><span class="mono">Purple heart · 500× · blue light · 45:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-02-640.webp" alt="Purple heart, 500×, blue light, at 25:25 in the recording." width="640" height="360"><span class="mono">Purple heart · 500× · blue light · 25:25</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-03-640.webp" alt="Purple heart, 500×, water, at 15:00 in the recording." width="640" height="360"><span class="mono">Purple heart · 500× · water · 15:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-04-640.webp" alt="Purple heart, about 700×, blue light, at 16:46 in the recording." width="640" height="360"><span class="mono">Purple heart · ≈700× · blue light · 16:46</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-05-640.webp" alt="Purple heart, about 700×, blue light, at 55:00 in the recording." width="640" height="360"><span class="mono">Purple heart · ≈700× · blue light · 55:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-06-640.webp" alt="Inchplant, 500×, blue light, at 25:00 in the recording." width="640" height="360"><span class="mono">Inchplant · 500× · blue light · 25:00</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-07-640.webp" alt="Inchplant, 500×, blue light, at 09:50 in the recording." width="640" height="360"><span class="mono">Inchplant · 500× · blue light · 09:50</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-08-640.webp" alt="Inchplant, 500×, water, at 15:01 in the recording." width="640" height="360"><span class="mono">Inchplant · 500× · water · 15:01</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-09-640.webp" alt="Inchplant, about 700×, blue light, at 15:15 in the recording." width="640" height="360"><span class="mono">Inchplant · ≈700× · blue light · 15:15</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-10-640.webp" alt="Hibiscus, 1000×, water, at 04:16 in the recording." width="640" height="360"><span class="mono">Hibiscus · 1000× · water · 04:16</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-11-640.webp" alt="Hibiscus, 1000×, blue light, at 19:17 in the recording." width="640" height="360"><span class="mono">Hibiscus · 1000× · blue light · 19:17</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-12-640.webp" alt="Hibiscus, about 700×, blue light, at 06:03 in the recording." width="640" height="360"><span class="mono">Hibiscus · ≈700× · blue light · 06:03</span></li><li><img loading="lazy" src="assets/lab/thumbs/micro-still-13-640.webp" alt="Philodendron ‘Florida’, 1000×, water, at 10:00 in the recording." width="640" height="360"><span class="mono">Philodendron ‘Florida’ · 1000× · water · 10:00</span></li></ul></div>
+  </div>
+</section>
+
+<!-- ============ MICROSCOPE SCRUB ============ -->
+<section class="scope" id="scope" data-pin data-palette="plant" aria-label="A real stoma, opening">
+  <div class="scope-sticky">
+    <div class="scope-view">
+      <canvas class="scope-canvas" aria-label="The same stoma under the microscope, played in time order as you scroll."></canvas>
+      <svg class="scope-reticle" viewBox="0 0 400 400" aria-hidden="true">
+        <circle cx="200" cy="200" r="196" class="r-outer"/>
+        <circle cx="200" cy="200" r="150" class="r-mid"/>
+        <line x1="200" y1="20" x2="200" y2="380"/><line x1="20" y1="200" x2="380" y2="200"/>
+        <g class="r-ticks"></g>
+      </svg>
+      <div class="scope-mag mono" data-scope-mag>500×</div>
+    </div>
+    <div class="scope-info">
+      <p class="label mono">Real footage</p>
+      <p class="scope-time mono"><span data-scope-time>05:00</span></p>
+      <h3 class="scope-title serif" data-scope-title>A slow opening in a <span class="nw">60-minute</span> recording</h3>
+      <p class="scope-en mono" data-scope-en></p>
+      <div class="scope-track" aria-hidden="true"><i data-scope-head></i><div class="scope-ticks" data-scope-ticks></div></div>
+      <p class="scope-notes" data-scope-notes></p>
+      <div class="scope-tabs mono" role="tablist" aria-label="Choose a recording">
+        <button role="tab" data-strip="2" aria-selected="true">60 MIN · 01-16</button>
+        <button role="tab" data-strip="0" aria-selected="false">40 MIN · 01-08</button>
+        <button role="tab" data-strip="3" aria-selected="false">HANDHELD · 02-06</button>
+      </div>
+      <p class="fine">Cropped by tracking the same stoma automatically with template matching. The stoma marked in the spreadsheet is not necessarily the one shown here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHASES ============ -->
+<section class="phases" data-palette="plant">
+  <div class="wrap-wide">
+    <p class="label mono">How it went</p>
+    <h2 class="h2 serif reveal">Two months, four phases</h2>
+  </div>
+  <ol class="phase-list wrap-wide">
+    <li class="phase reveal"><span class="ph-date mono">2025-12-10</span><span class="ph-tag mono c-blue">WATER</span><h3 class="serif">Water first</h3><p>A benchtop microscope at 500× and 1000×. Spraying came first, but a sprayed leaf was hard to bring into focus; after that the team tried a wet brush, soaking, and branches that had broken off on their own. This phase contributes 59 segments, none of them marked “striking”.</p></li>
+    <li class="phase reveal"><span class="ph-date mono">2026-01-07</span><span class="ph-tag mono c-lime">BLUE LIGHT</span><h3 class="serif">Switching to blue light</h3><p>The stimulus became blue light, mostly on purple heart and inchplant at 500×. Ten of the 13 “striking” segments fall between 8 and 28 January. The most common variable was the blue lamp’s battery: “battery weak” and “battery replaced” recur all through the notes.</p></li>
+    <li class="phase reveal"><span class="ph-date mono">2026-02-02</span><span class="ph-tag mono c-amber">HANDHELD</span><h3 class="serif">A handheld microscope</h3><p>A handheld digital microscope took over, at about 711–754×. Its drawbacks were listed in advance: the blue light would not reach the epidermis as directly, and focusing might shake the leaf. Later the blue flashlight was held in place with foam, and the microscope’s own light was covered with blue cellophane. Of the 64 segments in this phase, 41 show no clear opening or closing.</p></li>
+    <li class="phase reveal"><span class="ph-date mono">2026-02-10</span><span class="ph-tag mono">LONG TAKES</span><h3 class="serif">Waiting for late openers</h3><p>Some stomata open very late. A few were recorded for 60 to 90 minutes or more, the longest for about 1 hour 45 minutes. At this point the experimenters settled on four classes for choosing usable footage.</p></li>
+  </ol>
+
+  <div class="wrap">
+    <p class="label mono">Outcomes by setup</p>
+    <div class="phase-bars" data-phase-bars></div>
+    <ul class="legend mono" data-legend-static></ul>
+    <p class="fine">Counted over the 200 curated segments. The fourth phase’s long takes still used the handheld microscope, so their results are in the “blue light · handheld” row.</p>
+  </div>
+
+  <!-- lab collage -->
+  <div class="collage wrap-wide" aria-label="Greenhouse and lab">
+    <figure class="cl cl-a" data-speed="-0.08"><img loading="lazy" decoding="async" src="assets/lab/images/lab-img-37.jpg" alt="Pots of purple heart under a magenta grow light, seen from above." width="721" height="1280"><figcaption class="mono">Purple heart in pots under a magenta grow light, seen from above.</figcaption></figure>
+    <figure class="cl cl-b" data-speed="0.06"><img loading="lazy" decoding="async" src="assets/lab/images/lab-img-05.jpg" alt="A screen beside the benchtop microscope shows a teal image of stomata." width="1280" height="721"><figcaption class="mono">The benchtop microscope, with teal stomata on the screen.</figcaption></figure>
+    <figure class="cl cl-c" data-speed="-0.12"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/lab/videos/lab-vid-06-poster.webp"><source data-src="assets/lab/videos/lab-vid-06.mp4" type="video/mp4"></video><figcaption class="mono">Pots along the wall, with trays underneath to hold water. The original clip has spoken commentary; it is muted here.</figcaption></figure>
+    <figure class="cl cl-d" data-speed="0.1"><img loading="lazy" decoding="async" src="assets/lab/images/lab-img-14.jpg" alt="A freshly opened red hibiscus flower." width="721" height="960"><figcaption class="mono">The hibiscus put out a new flower. A flower opening is not a stoma opening.</figcaption></figure>
+    <figure class="cl cl-e" data-speed="-0.04"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/lab/videos/lab-vid-04-poster.webp"><source data-src="assets/lab/videos/lab-vid-04.mp4" type="video/mp4"></video><figcaption class="mono">The improved rig: foam holding the blue flashlight, and blue cellophane. (No sound.)</figcaption></figure>
+    <figure class="cl cl-f" data-speed="0.08"><img loading="lazy" decoding="async" src="assets/lab/images/lab-img-39.jpg" alt="Pots of inchplant with green, silver-striped and purple leaves." width="721" height="900"><figcaption class="mono">Inchplant: green, silver-striped and purple leaves.</figcaption></figure>
+    <figure class="cl cl-g" data-speed="-0.1"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/lab/videos/lab-vid-05-poster.webp"><source data-src="assets/lab/videos/lab-vid-05.mp4" type="video/mp4"></video><figcaption class="mono">A clump of purple heart, and a small jumping spider on a leaf tip. (No sound.)</figcaption></figure>
+    <figure class="cl cl-h" data-speed="0.05"><img loading="lazy" src="assets/lab/images/lab-img-01.jpg" alt="A handheld digital microscope on a stand, its probe above a leaf." width="1485" height="836"><figcaption class="mono">The handheld digital microscope, its probe close to the leaf.</figcaption></figure>
+  </div>
+
+  <div class="seq wrap-wide">
+    <p class="label mono">Same field of view · 0 / 20 / 40 / 60 MIN</p>
+    <div class="seq-row">
+      <figure><img loading="lazy" src="assets/lab/thumbs/lab-img-23-640.webp" alt="Micrograph of purple heart epidermis at about 0 minutes."><figcaption class="mono">≈00:00</figcaption></figure>
+      <figure><img loading="lazy" src="assets/lab/thumbs/lab-img-24-640.webp" alt="Micrograph of purple heart epidermis at about 20 minutes."><figcaption class="mono">≈20:00</figcaption></figure>
+      <figure><img loading="lazy" src="assets/lab/thumbs/lab-img-25-640.webp" alt="Micrograph of purple heart epidermis at about 40 minutes."><figcaption class="mono">≈40:00</figcaption></figure>
+      <figure><img loading="lazy" src="assets/lab/thumbs/lab-img-26-640.webp" alt="Micrograph of purple heart epidermis at about 60 minutes."><figcaption class="mono">≈60:00</figcaption></figure>
+    </div>
+    <p class="fine">Purple heart, the same field of view at about 0, 20, 40 and 60 minutes. The order is unverified, and the blue flashlight ran out partway through the recording.</p>
+  </div>
+
+  <div class="wrap errlog">
+    <p class="label mono">What went wrong</p>
+    <ol class="log mono">
+      <li class="reveal"><span class="log-k">ERR_01 BATTERY</span><span class="log-v">The blue flashlight runs flat. Once, the dead battery was noticed only after recording, and no one could tell when it had run out.</span></li>
+      <li class="reveal"><span class="log-k">ERR_02 FOCUS</span><span class="log-v">A sprayed leaf is hard to focus on; focusing the handheld microscope shakes the leaf; long recordings often blur and drift.</span></li>
+      <li class="reveal"><span class="log-k">ERR_03 RECORDING</span><span class="log-v">Just after start-up, the computer often stopped responding halfway through a recording; in two segments the first ten minutes of the file were corrupted.</span></li>
+      <li class="reveal"><span class="log-k">ERR_04 GREENHOUSE</span><span class="log-v">Yellowing leaves increased, spiders and small moths appeared, and for a while red spider mite was suspected (never identified). Once, a jumping spider was caught during watering.</span></li>
+      <li class="reveal"><span class="log-k">ERR_05 LEAF_HEALTH</span><span class="log-v">Some purple heart leaves turned green or developed white spots. The experimenters suspected too little light or pests; this has not been confirmed.</span></li>
+    </ol>
+  </div>
+
+  <div class="wrap learned">
+    <p class="label mono">What we learned</p>
+    <div class="learn-grid">
+      <article class="reveal"><h3 class="serif">Openings are slow, and rare</h3><p class="mono c-lime">83 / 200</p><p>Of the 200 curated segments, 83 show no clear opening or closing. Of the ten recorded on 4 February, only one young purple heart leaf clearly opened.</p></article>
+      <article class="reveal"><h3 class="serif">Young leaves seem livelier</h3><p class="mono c-lime">16 JAN 2026</p><p>On 16 January a newer purple heart leaf opened clearly even as the blue light weakened; once the light was removed it did not close quickly, and even opened wider. The note on that segment reads: “Perhaps new leaves are livelier.” This is one observation, not a conclusion.</p></article>
+      <article class="reveal"><h3 class="serif">Every striking segment was under blue light</h3><p class="mono c-lime">13 / 13 · BLUE LIGHT</p><p>All 13 “striking” segments were recorded under blue light; none of the 59 spray, brush and soak segments was marked striking. But count the “visible” class as well, and opening or closing can be seen in 30.5% of water segments and 28.5% of blue-light ones: about the same.</p></article>
+      <article class="reveal"><h3 class="serif">It takes patience</h3><p class="mono c-lime">30–45 MIN</p><p>Most of the 55 annotated segments run 30 to 45 minutes, and the median peak aperture, judged by eye, is only about 50%. Some stomata show no change until half an hour has gone by.</p></article>
+    </div>
+    <aside class="caveats reveal">
+      <p class="label mono">Before you read these numbers</p>
+      <ul>
+        <li>The experiments ran to hundreds of trials; the 200 segments here are a curated selection, not all of them. Every segment count and percentage on this page is computed over those 200 and cannot stand for all the trials.</li>
+        <li>This is not a controlled experiment. Leaves, watering intervals, battery level, temperature and humidity all varied, so no cause and effect can be read from it.</li>
+        <li>The classes were compiled from the wording of the spreadsheet’s note column; the original videos were not re-watched one by one.</li>
+        <li>Aperture percentages are the annotators’ estimates by eye.</li>
+        <li>The documentary’s “Experiment” chapter sums up the pattern the team found in one line: blue light at 400–500 nm opens the stomata, a rise in ambient temperature closes them, and one cycle of opening and closing takes about 60 minutes. The numbers on this page come only from the 200 curated records, which have no field for warming; the two can be read side by side.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ DATA SCULPTURE ============ -->
+<section class="sculpt solid" id="sculpture" aria-label="Data sculpture of the 200 curated records">
+  <div class="sculpt-head wrap-wide">
+    <div>
+      <p class="label mono">Data sculpture · 200 curated segments</p>
+      <h2 class="h2 serif">Every segment, a stoma</h2>
+      <p class="body">The 200 curated segments become 200 stomata. Colour is the outcome and size is humidity; how wide each one opens and how deeply it breathes come from the outcome class drawn from the notes (the outcome column in the downloadable data). Drag to rotate, and rest the cursor on a stoma to read its record.</p>
+    </div>
+    <div class="ctrl mono">
+      <div class="ctrl-row" role="group" aria-label="Layout"><span class="ctrl-k">LAYOUT</span>
+        <button class="pill is-on" data-layout="spiral">Time spiral</button><button class="pill" data-layout="calendar">Calendar</button><button class="pill" data-layout="outcome">Outcome</button><button class="pill" data-layout="plant">Plant</button><button class="pill" data-layout="climate">Temp &amp; humidity</button>
+      </div>
+      <div class="ctrl-row" role="group" aria-label="Plant"><span class="ctrl-k">PLANT</span>
+        <button class="pill is-on" data-f-plant="-1">All</button><button class="pill" data-f-plant="0">Purple heart</button><button class="pill" data-f-plant="1">Inchplant</button><button class="pill" data-f-plant="2">Hibiscus</button><button class="pill" data-f-plant="3">Philodendron</button>
+      </div>
+      <div class="ctrl-row" role="group" aria-label="Stimulus"><span class="ctrl-k">STIMULUS</span>
+        <button class="pill is-on" data-f-stim="">All</button><button class="pill" data-f-stim="水">Water</button><button class="pill" data-f-stim="藍光">Blue light</button><button class="pill" data-f-stim="其他光">Other light</button>
+      </div>
+      <div class="ctrl-row" role="group" aria-label="Microscope"><span class="ctrl-k">MICROSCOPE</span>
+        <button class="pill is-on" data-f-scope="-1">All</button><button class="pill" data-f-scope="0">Benchtop</button><button class="pill" data-f-scope="1">Handheld</button>
+      </div>
+    </div>
+  </div>
+  <div class="sculpt-stage" data-sculpt-stage>
+    <canvas class="sculpt-canvas" aria-label="3D data sculpture: 200 stomata, each standing for one curated experiment record."></canvas>
+    <div class="sculpt-labels" aria-hidden="true"></div>
+    <ul class="legend legend-live mono" data-legend-live></ul>
+    <p class="sculpt-hint mono" aria-hidden="true">DRAG · HOVER</p>
+    <p class="sculpt-count mono" data-sculpt-count aria-live="polite"></p>
+  </div>
+  <p class="fine wrap-wide">The classes follow the wording of the spreadsheet’s note column, by the same rules as the downloadable data: striking 13, visible 45, subtle 53, none 83, other 6 (uncertain 3, hard to observe 1, note left empty 2). “Visible” is the class the experimenters themselves called “blank”: opening and closing were clear, but not striking. It does not mean missing data. Notes that say nothing about the outcome follow that convention and count as visible; notes that only say “slow to open and close” or “opened slightly” are put under subtle, to be safe. The 3 segments without a humidity reading are drawn at a fixed size. The notes in the tooltips are translated from the Chinese.</p>
+</section>
+
+<!-- ============ RIDGE (YOLO) ============ -->
+<section class="ridge solid" id="ridge" aria-label="Aperture curves of the 55 annotated segments">
+  <div class="wrap-wide ridge-head">
+    <div>
+      <p class="label mono">Annotation</p>
+      <h2 class="h2 serif">55 segments, second by second</h2>
+      <p class="body">From the 200 curated segments, 55 were picked for close annotation: how far the stoma had opened (a percentage, judged by eye) at each timecode, with noisy stretches, such as blur or small shifts in position, marked separately. These annotations are the training material that teaches a machine to “see” a stoma. In the chart below each line is one segment, ordered by date from front to back; dashed lines mark the noisy stretches.</p>
+    </div>
+    <div class="ridge-side">
+      <p class="tc mono"><span>0% / 00:15</span><span>20% / 10:46</span><span>50% / 20:12</span><span class="c-lime">95% / 28:15</span></p>
+      <p class="fine">Excerpt. An inchplant stoma goes from fully closed to almost fully open in 28 minutes. (2025-12-10, 1000×, sprayed with water)</p>
+      <ul class="ridge-facts mono">
+        <li>55 segments: purple heart 32, inchplant 17, hibiscus 6</li>
+        <li>34 at 500×, 8 at 1000×, 13 handheld at about 700×</li>
+        <li>53 have aperture percentages; 2 have none and are left out</li>
+        <li>Mostly 30–45 minutes; the longest about 105 minutes</li>
+        <li>Median peak aperture 50%; 10 segments reach 80% or more</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ridge-stage">
+    <canvas class="ridge-canvas" aria-label="53 curves of stomatal aperture in percent; the horizontal axis is recording time, 0 to 105 minutes."></canvas>
+    <div class="ridge-tip mono" data-ridge-tip hidden></div>
+  </div>
+  <div class="wrap">
+    <p class="body yolo-txt">A stoma changes over hours, but human attention holds for only 7 to 15 minutes, so machines and AI were invited in. The machine does not understand what a stoma is; what it learns is what this thing looks like in pictures like these. The detection model YOLO is named for exactly that: You Only Look Once.</p>
+  </div>
+</section>
+
+<!-- ============ GATE 02 AI ============ -->
+<section class="gate" data-gate="ai" data-palette="ai" aria-label="Chapter 2: AI">
+  <div class="gate-sticky">
+    <div class="tear tear-top" aria-hidden="true"></div>
+    <div class="tear tear-bot" aria-hidden="true"></div>
+    <div class="gate-title">
+      <span class="gate-num mono">CHAPTER 02</span>
+      <h2 class="gate-h serif">AI</h2>
+      <span class="gate-en mono">SOUND · IMAGE — NO PLAYING ALONG, NO HAND EDITS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOUND ============ -->
+<section id="sound" class="sound" data-palette="ai">
+  <div class="wrap">
+    <p class="label mono">AI · Sound</p>
+    <h2 class="h2 serif reveal">Grown from ten plant sounds</h2>
+    <p class="body reveal">Every sound on the AI side grows out of just 10 pieces of plant-sound material: no outside samples, and no synthesiser presets. The team calls these 10 the “ingredients”.</p>
+  </div>
+
+  <div class="flow wrap-wide reveal" aria-label="Nature, sensing, interpreting, performing">
+    <div class="flow-node"><b class="serif">Nature</b><span class="mono">01</span></div><i class="flow-line"></i>
+    <div class="flow-node"><b class="serif">Sensing</b><span class="mono">02</span></div><i class="flow-line"></i>
+    <div class="flow-node"><b class="serif">Interpreting</b><span class="mono">03</span></div><i class="flow-line"></i>
+    <div class="flow-node"><b class="serif">Performing</b><span class="mono">04</span></div>
+  </div>
+
+  <div class="wrap two-tools">
+    <article class="tool reveal">
+      <p class="mono tool-date">2026-05-27 / 06-03</p>
+      <h3 class="serif">Plant Sound Morphology Lab <span class="mono">V1 · V2 · IN THE BROWSER</span></h3>
+      <p>It began as a small tool that runs in the browser. The sound of the plant itself is recorded with a contact microphone; the tool measures its loudness, zero-crossing rate, spectral centroid and number of transients, then hands those numbers to an AI, which describes its texture, brightness, roughness and liveliness in words.</p>
+      <p>Then the raw sound is processed into many variants. The first version had 10 techniques; the second grew to 34 effects in 8 families: pitch, time, texture, spectrum, modulation, space, distortion and chaos. Each sound chains 1 to 3 effects at random, with parameters drawn from a linear congruential generator (LCG): the same seed gives the same batch.</p>
+      <p>The 10 sounds made on 27 May (3 time-stretched, 3 ring-modulated, 4 granulated) became the ingredients of everything that followed.</p>
+    </article>
+    <article class="tool reveal">
+      <p class="mono tool-date">2026-07-01</p>
+      <h3 class="serif">NoisePad · Generative</h3>
+      <p>A one-page generative soundscape engine with three layers stacked together: a granular layer that cuts the material into grains and weaves them anew, a drone layer that stretches it into a sustained bed, and a sparse event layer that leaves space and adds the occasional accent.</p>
+      <p>With the same seed, parameters and material, the result is exactly the same. A result worth keeping is saved as a “recipe” of only a few kilobytes, and can be reproduced on another computer.</p>
+      <ul class="layers mono">
+        <li><b>GRANULAR</b> fine-grained texture</li>
+        <li><b>DRONE</b> a sustained bed</li>
+        <li><b>EVENTS</b> space that breathes</li>
+      </ul>
+    </article>
+  </div>
+
+  <!-- PLAYER + VISUALIZER -->
+  <div class="deck solid" id="deck">
+    <div class="deck-stage">
+      <canvas class="viz-canvas" aria-label="Live sound visualisation: a spectral terrain and a spectral ring."></canvas>
+      <div class="deck-now mono" aria-live="polite"><span class="dim">NOW PLAYING</span><b data-now-title>—</b><small data-now-meta></small></div>
+      <div class="deck-big-play">
+        <button class="btn btn-listen magnetic" data-deck-toggle data-cursor="PLAY"><span class="btn-ico" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="btn-txt" data-deck-label>Play<small>SOUND OFF</small></span></button>
+      </div>
+    </div>
+    <div class="deck-side">
+      <p class="label mono">Tracks</p>
+      <ol class="tracks" data-tracks></ol>
+    </div>
+    <div class="deck-seek">
+      <div class="seek" data-seek role="slider" aria-label="Playback position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+        <canvas class="seek-canvas"></canvas>
+        <div class="seek-marks" data-seek-marks></div>
+        <i class="seek-head" data-seek-head></i>
+      </div>
+      <div class="seek-time mono"><span data-cur>0:00</span><span data-dur>0:00</span></div>
+    </div>
+  </div>
+
+  <div class="wrap opr">
+    <p class="label mono">One-Pass Read · 2026-08-31</p>
+    <h3 class="h2 serif reveal">One-Pass Read</h3>
+    <ul class="chips mono reveal"><li>600.000 s</li><li>48 kHz / 16-bit</li><li>seed 28 800 000</li><li>cuts 73 · 167 · 283 · 433</li><li>zero hand edits</li></ul>
+    <p class="statement serif reveal">The AI has no hours of the day, only a sample count that keeps rising; the plant has no circular time, only a gradient that runs one way. 600 seconds make 28,800,000 samples, cut at four prime-numbered seconds into five movements, each longer than the last: time does not loop, it swells. Every movement is one failed attempt to decode the plant’s signal.</p>
+  </div>
+  <div class="mvbar wrap-wide reveal" data-mvbar>
+    <div class="mvbar-spec"><img loading="lazy" src="assets/audio/one-pass-read-spectrogram-strip.jpg" alt="Spectrogram of the whole of One-Pass Read: the dense vertical striations of movement III, and in movement V a low-pass staircase that halves every 42 seconds." width="1496" height="360"><i class="mvbar-head" data-mv-head></i><i class="mvbar-509" title="509 s"></i></div>
+    <div class="mvbar-segs mono">
+      <button style="--w:73" data-seekto="0"><b>I</b>73 s</button><button style="--w:94" data-seekto="73"><b>II</b>94 s</button><button style="--w:116" data-seekto="167"><b>III</b>116 s</button><button style="--w:150" data-seekto="283"><b>IV</b>150 s</button><button style="--w:167" data-seekto="433"><b>V</b>167 s</button>
+    </div>
+  </div>
+  <div class="wrap movements">
+    <article class="mv reveal"><span class="mv-t mono">I · 00:00–01:13<small>73 s</small></span><div><h4>Dust, Under Tension <span class="mono">DUST_TENSION</span></h4><p>Quantised dust surfacing from near-silence; events land only on prime-numbered seconds. This is standby, not an overture.</p></div><button class="mv-play mono" data-play-at="0" aria-label="Play from movement I">▶ 00:00</button></article>
+    <article class="mv reveal"><span class="mv-t mono">II · 01:13–02:47<small>94 s</small></span><div><h4>Stomata Timeout <span class="mono">STOMATA_TIMEOUT</span></h4><p>Thousands of stomata open and close on their own, never in step. After each event comes 8 to 15 seconds of vacuum: the AI waiting for an acknowledgement that will never arrive.</p></div><button class="mv-play mono" data-play-at="73" aria-label="Play from movement II">▶ 01:13</button></article>
+    <article class="mv reveal"><span class="mv-t mono">III · 02:47–04:43<small>116 s</small></span><div><h4>Cavitation Storm <span class="mono">CAVITATION_IRQ</span></h4><p>The click of a water column snapping in the xylem during drought, received as a storm of interrupts, the gaps closing from 4 seconds to 0.35. The most violent passage in the piece, and the most honest.</p></div><button class="mv-play mono" data-play-at="167" aria-label="Play from movement III">▶ 02:47</button></article>
+    <article class="mv reveal"><span class="mv-t mono">IV · 04:43–07:13<small>150 s</small></span><div><h4>Tropism Overfit <span class="mono">TROPISM_OVERFIT</span></h4><p>Three days of bending toward the light, compressed into 150 seconds: the stereo image travels one way, from left to right, and the pitch, locked to ×2, ×3 and ×5 multiples, is pushed upward until the plant material can no longer be recognised. The noon of the human narrative passes through here, unmarked.</p></div><button class="mv-play mono" data-play-at="283" aria-label="Play from movement IV">▶ 04:43</button></article>
+    <article class="mv reveal"><span class="mv-t mono">V · 07:13–10:00<small>167 s</small></span><div><h4>Tree-Ring Residue <span class="mono">RESIDUE_RING</span></h4><p>Not a return to zero, but a reduction. The sustained tones lose power one by one on a grid of prime numbers, the low-pass cutoff halves about every 42 seconds, and the listener is slowly sealed into the wood.</p></div><button class="mv-play mono" data-play-at="433" aria-label="Play from movement V">▶ 07:13</button></article>
+    <aside class="moment reveal">
+      <p class="moment-n mono">509 s</p>
+      <p class="serif">At second 509 comes a single slice of water sound, almost untreated and played forward: the only moment in the whole piece that tries to get the words right. It arrives too late and is swallowed by the filter at once. The last hit falls at 587 seconds; the dust after it is the same dust as at the beginning.</p>
+      <button class="mv-play mono" data-play-at="503" aria-label="Play from 503 seconds">▶ 08:23</button>
+    </aside>
+    <div class="variants">
+      <p class="reveal"><b class="mono c-blue">CRACK VERSION</b> Same score, same seed, and the layer underneath unchanged sample for sample, with a pulse rhythm of cracking sounds laid on top (19 groups, 146 hits). The opening and the ending stay clean.</p>
+      <p class="reveal"><b class="mono c-blue">FULL-LENGTH VERSION · 1200 S</b> Matches the 20 minutes of the narrative table, scaled by time dilation: prime cuts at 149, 331, 563 and 863 seconds, the golden section at 742. The one water sound falls at 1019 seconds, the last hit at 1171. Seed 57,600,000, exactly the number of samples in 1200 seconds.</p>
+      <p class="reveal fine">Engine: NoisePad Gen v2. Sustained tones are stretched with paulstretch phase randomisation; grain density comes from three LFOs with periods of 11, 13 and 17 seconds interfering with one another; events duck the sustained tones; the reverb is a convolution with a synthesised impulse response.<br>Pipeline: spoken brief → parsing the narrative table → proposals from three independent perspectives (signal ontology / plant time / misreading protocol) → merged into one algorithmic score → rendered by the engine.</p>
+    </div>
+  </div>
+
+  <div class="wrap four">
+    <p class="label mono">Four musical pieces · 2026-10-08</p>
+    <h3 class="h2 serif reveal">The same ingredients, this time with harmony</h3>
+    <p class="body reveal">The same 10 ingredients, but this time code writes harmony, rhythm and melody. The plucked strings are Karplus–Strong strings excited by plant grains; the drum kit is made from cracking sounds; the sustained bed is the plant’s spectrum passed through a mask of chord harmonics; the bells and water drops are generated from plant material too. Each piece runs 180 seconds, with loudness normalised to −16 LUFS.</p>
+  </div>
+  <div class="pieces wrap-wide">
+    <button class="piece reveal magnetic-soft" data-play-track="music-01-transpiration" data-cursor="PLAY"><span class="pc-n mono">01</span><b class="serif">Transpiration</b><span class="pc-meta mono">3/4 · 72 BPM · D DORIAN</span><span class="pc-sec">Mist · dew · stomata · transpiration · cloud · dispersal</span><canvas class="pc-wave" data-peaks="music-01-transpiration"></canvas></button>
+    <button class="piece reveal magnetic-soft" data-play-track="music-02-phloem-flow" data-cursor="PLAY"><span class="pc-n mono">02</span><b class="serif">Phloem Flow</b><span class="pc-meta mono">4/4 · 96 BPM SWING · A DORIAN</span><span class="pc-sec">Uptake · sieve tubes · exchange · cut-off · return flow · deposit</span><canvas class="pc-wave" data-peaks="music-02-phloem-flow"></canvas></button>
+    <button class="piece reveal magnetic-soft" data-play-track="music-03-photoperiod" data-cursor="PLAY"><span class="pc-n mono">03</span><b class="serif">Photoperiod</b><span class="pc-meta mono">4/4 · 128 BPM · F LYDIAN</span><span class="pc-sec">Dawn · light reactions · electron transport · dark reactions · Calvin cycle · zenith · sunset</span><canvas class="pc-wave" data-peaks="music-03-photoperiod"></canvas></button>
+    <button class="piece reveal magnetic-soft" data-play-track="music-04-rings-in-seven" data-cursor="PLAY"><span class="pc-n mono">04</span><b class="serif">Rings in Seven</b><span class="pc-meta mono">7/8 (2+2+3) · PHRYGIAN → LYDIAN</span><span class="pc-sec">Pith · earlywood · latewood · cambium · bark · rings. Each new ring raises the music by one step.</span><canvas class="pc-wave" data-peaks="music-04-rings-in-seven"></canvas></button>
+  </div>
+  <div class="wrap">
+    <p class="body reveal">Compared with One-Pass Read, the four pieces have 3 to 5 times the beat clarity, 10 to 24 times the pitch concentration and 5 to 9 times the rate of harmonic change.</p>
+    <blockquote class="note reveal"><p>The AI can’t really “listen”. The figures above come from analysis of spectrum, key, beat and loudness; whether it sounds good is left to human ears.</p></blockquote>
+    <div class="perf reveal">
+      <p class="label mono">Performance sound · 2026-10</p>
+      <p>The sound used in the live performance comes in two lengths: a 20-minute interactive version and a 12-minute version. The 20-minute version grows slowly out of silence. At 5:31 the timbre suddenly widens, at 8:30 there is a quiet trough, and around 17:00 it reaches its peak; after 19:10 it falls silent, leaving a single faint sound at 19:31.</p>
+      <p>The 12-minute version carries two distinctive sonic signatures: a flutter that trembles about 18 times a second, and high pure tones between 2.5 and 9 kHz. Every image version from E onward is generated to follow one of these two performance sounds, the 20-minute or the 12-minute version.</p>
+      <p class="fine">The performance sound comes from the creative team’s sound design; it is not the AI side’s work. The AI side only analyses it, so that the images can follow it.</p>
+      <button class="btn btn-ghost magnetic" data-play-track="performance-12min-excerpt-60s" data-cursor="PLAY"><span class="btn-txt">Hear a 60-second excerpt<small>12 MIN · 7:36–8:36</small></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IMAGE ============ -->
+<section id="image" class="image" data-palette="ai">
+  <!-- THE FILM: a poster button made from our own still; nothing is requested from YouTube until it is pressed (js/thefilm.js) -->
+  <div class="tf" id="thefilm">
+    <div class="wrap-wide tf-head">
+      <p class="label mono">Image · The film</p>
+      <div class="tf-cols">
+        <div>
+          <h2 class="h2 serif reveal" id="thefilm-h">The Film</h2>
+        </div>
+        <div>
+          <p class="body reveal">The Interspecies Dialogue film, published by the production team on its official YouTube channel.</p>
+        </div>
+      </div>
+    </div>
+    <div class="tf-stage">
+      <div class="tf-band" aria-hidden="true"><i></i></div>
+      <div class="tf-frame">
+        <div class="tf-hud mono" aria-hidden="true"><span>▶ FILM 01–07 · V1</span><span>16 : 9</span></div>
+        <div class="yt" data-yt="H9dKvSVsPyA" data-yt-title="Interspecies Dialogue, the film (YouTube player)">
+          <button class="yt-poster" type="button" data-yt-play data-cursor="PLAY" aria-label="Play the film Interspecies Dialogue (loads the YouTube player)">
+            <img src="assets/works/loops/f3-loop-01-poster.webp" alt="" width="960" height="507" loading="lazy" decoding="async">
+            <span class="yt-shade" aria-hidden="true"></span>
+            <span class="yt-cap" aria-hidden="true"><span class="yt-kicker mono">THE FILM</span><span class="yt-title serif">Interspecies Dialogue</span><span class="yt-sub mono">PLANT · HUMAN · AI</span></span>
+            <span class="yt-play" aria-hidden="true"><i class="yt-ring"></i><i class="yt-tri"></i></span>
+            <span class="yt-hint mono" aria-hidden="true">PLAY<small>YouTube loads only on click</small></span>
+          </button>
+        </div>
+        <div class="tf-hud tf-hud-b mono" aria-hidden="true"><span>YOUTUBE · OFFICIAL CHANNEL</span><span>PRODUCTION TEAM</span></div>
+      </div>
+    </div>
+    <p class="tf-note wrap-wide mono">The player is provided by YouTube. Until you press play, this page makes no connection to YouTube; only then is the player loaded from youtube-nocookie.com. <a href="https://youtu.be/H9dKvSVsPyA" target="_blank" rel="noopener">Watch on YouTube ↗</a></p>
+  </div>
+
+  <div class="wrap">
+    <p class="label mono">AI · Moving image</p>
+    <h2 class="h2 serif reveal">Letting real stomata breathe with the sound</h2>
+    <p class="body reveal">The images start from 35 microscope recordings of leaf epidermis: purple heart, inchplant, hibiscus and Philodendron ‘Florida’, at 500×, 700× and 1000×. First the AI finds the real stomata in the frame: 158 of them, each one marked, then re-checked in an independent second round. Then the sound decides when they gently open and close. Every version is driven by sound and computed by rule; nothing is cut by a human hand.</p>
+    <ul class="chips mono reveal"><li>2048 × 1080 · DCI 2K</li><li>25 fps</li><li>dual projection 3840 × 1080</li><li>158 real stomata</li></ul>
+  </div>
+  <figure class="sheet" data-sheet>
+    <div class="sheet-inner"><img loading="lazy" src="assets/works/stills/d-overview-10s.webp" alt="Version D, Ten Specimens: the 20-minute film sampled every 10 seconds, an overview of 120 frames." width="2000" height="983"></div>
+    <figcaption class="mono wrap-wide">Version D, Ten Specimens, one frame every 10 seconds · 120 FRAMES · 20:00</figcaption>
+  </figure>
+
+  <div class="film" id="film" data-pin aria-label="Image versions">
+    <div class="film-sticky">
+      <div class="film-head wrap-wide mono"><span>VERSIONS</span><span class="film-count"><b data-film-idx>A</b> · 12</span></div>
+      <div class="film-track" data-film-track>
+        <article class="frame" data-v="A"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/a-loop-01-poster.webp"><source data-src="assets/works/loops/a-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">A</span><h3 class="serif">Memory <span class="mono">VERSION A</span></h3><p class="frame-meta mono">2026-10-06 · 20:00 · Music: One-Pass Read, full-length version</p><p>The picture itself is the block of memory being read. The spectrum of the whole 1200-second piece is folded into 135 rows, each of 1024 time slices by 8 frequency bands; the read head sets out from the top-left corner, passes only once and never turns back. The last frame is the complete image of the whole work.</p></div></article>
+        <article class="frame" data-v="B"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/b-loop-02-poster.webp"><source data-src="assets/works/loops/b-loop-02.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">B</span><h3 class="serif">Only Look Once <span class="mono">VERSION B</span></h3><p class="frame-meta mono">2026-10-06 · 20:00 · Music: One-Pass Read, full-length version</p><p>The heart of the detection model YOLO is “only look once”, and this sound is called One-Pass Read. Version B lets that machine eye spend 20 minutes listening to it: detection boxes land by themselves on real guard cells, until in the fourth movement the machine starts seeing stomata in everything, and its confidence collapses all the way to “stoma ?”.</p></div></article>
+        <article class="frame" data-v="C"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/c-loop-01-poster.webp"><source data-src="assets/works/loops/c-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">C</span><h3 class="serif">Math Microscope <span class="mono">VERSION C</span></h3><p class="frame-meta mono">2026-10-06 · 20:00 · Music: One-Pass Read, full-length version</p><p>No AI model at all: only mathematical formulas “drawing” a leaf epidermis as seen under the microscope. A Voronoi distance field grows the cells, warped coordinates make the wavy cell walls of hibiscus, parametric ellipses are the stomata, and the sound sets how wide each one opens. Only the moment at 1019 seconds is real footage; the label in the bottom-left corner turns from SYNTH to REAL.</p></div></article>
+        <article class="frame" data-v="C+"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/c3-loop-01-poster.webp"><source data-src="assets/works/loops/c3-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">C<sup>+</sup></span><h3 class="serif">Math Microscope, Overlay <span class="mono">VERSION C+</span></h3><p class="frame-meta mono">2026-10-06 · 20:00 · Music: One-Pass Read, full-length version</p><p>The other way round: here the real footage is the subject. The formula layer is computed from the current frame and laid back over it at 6% to 42% opacity, so it lines up by construction; six real stomata are tracked 5 times a second, mostly to within ±3.7 pixels. The opening and closing the audience sees is the real stoma itself.</p></div></article>
+        <article class="frame" data-v="D"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/d-loop-01-poster.webp"><source data-src="assets/works/loops/d-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">D</span><h3 class="serif">Ten Specimens <span class="mono">VERSION D</span></h3><p class="frame-meta mono">2026-10-08 · 20:00 · Music: One-Pass Read, full-length version</p><p>The material grows to 10 raw microscope clips: 60 scenes, about 20 seconds each, with the cuts snapped to strong attacks in the sound. Every scene changes its angle, its colour and its formula cell walls; the transitions are formulas too, as a new scene opens out of the slit of a real stoma, or Voronoi cells flip over one by one.</p></div></article>
+        <article class="frame" data-v="E"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/e-loop-01-poster.webp"><source data-src="assets/works/loops/e-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">E</span><h3 class="serif">Breathing with Sound <span class="mono">VERSION E</span></h3><p class="frame-meta mono">2026-10-12 · 20:00 · Music: performance sound, 20 min</p><p>Loudness drives exposure, saturation, clarity, stomatal opening and camera speed; the spectral centroid sets the colour of the glow: amber for the lows, teal for the mids, a pale violet-white for the highs. All 32 scenes fade in and out, and the correlation between the picture’s brightness and the sound’s energy, second by second, is r = 0.88.</p></div></article>
+        <article class="frame" data-v="E2"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/e2-loop-02-poster.webp"><source data-src="assets/works/loops/e2-loop-02.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">E2</span><h3 class="serif">Bright, No Text <span class="mono">VERSION E2</span></h3><p class="frame-meta mono">2026-10-13 · 20:00 · Music: performance sound, 20 min</p><p>The rhythm stays as it was. Quiet passages are no longer pushed darker and greyer: light and saturation come up to the level of version D, and all on-screen text is removed.</p></div></article>
+        <article class="frame" data-v="F"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/f-loop-01-poster.webp"><source data-src="assets/works/loops/f-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">F</span><h3 class="serif">Sound-Signature Tear <span class="mono">VERSION F</span></h3><p class="frame-meta mono">2026-10-13 · 12:04 · Music: performance sound, 12 min</p><p>First, two detectors were written to find, across the whole piece, the flutter (the full-band envelope trembling about 18 times a second) and the high pure tones (2.5–9 kHz). The flutter makes the picture look as if seen through flowing water; the pure tones bring RGB misregistration, horizontal tearing and scan lines. Scene changes between minutes 3 and 10 come 20% faster.</p></div></article>
+        <article class="frame" data-v="F2"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/f2-loop-01-poster.webp"><source data-src="assets/works/loops/f2-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">F2</span><h3 class="serif">Refined Noise <span class="mono">VERSION F2</span></h3><p class="frame-meta mono">2026-10-13 · 12:04 / 20:00 · Music: performance sound, 12 / 20 min</p><p>The noise is gathered into local “spectral bands”: every high pure tone leaves a long, thin band of noise on the picture, higher for a higher tone, and the same tone always stops in the same place, taking up only about 5% of the frame. When neither of the two sounds is there, the picture is left untouched.</p></div></article>
+        <article class="frame" data-v="F3"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/f3-loop-01-poster.webp"><source data-src="assets/works/loops/f3-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">F3</span><h3 class="serif">Stoma Breathing <span class="mono">VERSION F3</span></h3><p class="frame-meta mono">2026-10-15 · 12:04 / 20:00 · Music: performance sound, 12 / 20 min</p><p>All distortion is removed. When the flutter appears, the camera fixes on the real stoma closest to the centre of the frame and slowly zooms in and out: one breath in and out every 3.2 seconds, 9% at most. The fixed stoma stays still on screen, so it looks as if the stoma itself is breathing.</p></div></article>
+        <article class="frame" data-v="F5"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/f5-loop-01-poster.webp"><source data-src="assets/works/loops/f5-loop-01.mp4" type="video/mp4"></video><button class="frame-sound mono" data-sound-video="assets/works/showcase/f5-showcase-40s.mp4" data-poster="assets/works/showcase/f5-showcase-40s-poster.webp" data-title="Version F5, 12-minute cut · 40 seconds with sound (7:36–8:16)">▶ 40 S WITH SOUND</button></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">F5</span><h3 class="serif">Following the Sound <span class="mono">VERSION F5</span></h3><p class="frame-meta mono">2026-10-15 · 12:04 / 20:00 · Music: performance sound, 12 / 20 min</p><p>The zoom no longer waits for the flutter: the whole film zooms gently in and out with the background sound, by about 5% at most. The calculation uses only sound that has already been heard, so the picture never moves ahead of the sound. The noise layer stays.</p></div></article>
+        <article class="frame frame-dual" data-v="2×"><div class="frame-media"><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/dual-loop-01-poster.webp"><source data-src="assets/works/loops/dual-loop-01.mp4" type="video/mp4"></video></div><div class="frame-txt"><span class="frame-code serif" aria-hidden="true">2×</span><h3 class="serif">Dual Projection <span class="mono">TWO PROJECTORS</span></h3><p class="frame-meta mono">2026-10-19 · 12:04 / 20:00 · 3840 × 1080</p><p>Made for the two projectors at the venue. Two frames on pure black, their outer edges torn and irregular: they drift slowly, open slightly with the energy of each passage, and tear afresh at every scene change. The seam in the middle is about 128 pixels wide and completely black. Left and right change scene on the same cut, each with a different plant and a contrasting colour.</p></div></article>
+      </div>
+      <div class="film-progress" aria-hidden="true"><i data-film-bar></i></div>
+    </div>
+  </div>
+
+  <div class="wrap revisions">
+    <p class="label mono">Back and forth</p>
+    <p class="body reveal">The versions were revised in answer to feedback. E was too dark, so E2 followed; F distorted too much, so F2 kept the distortion local; then the distortion went altogether, and F3 used a breathing camera instead. Some ideas were dropped along the way: a simulated heartbeat at a fixed pace came across as too showy, and gave way to simply following the real sound.</p>
+    <div class="micro-pair reveal">
+      <figure><video muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/micro-opening-timeout-3x-poster.webp"><source data-src="assets/works/loops/micro-opening-timeout-3x.webm" type="video/webm"><source data-src="assets/works/loops/micro-opening-timeout-3x.mp4" type="video/mp4"></video><figcaption class="mono">A real stoma, magnified 3×, opening slightly during a “timeout event”. The real movement is only a few pixels.</figcaption></figure>
+      <figure><img loading="lazy" src="assets/works/stills/d-micro-opening-compare.webp" alt="The same real slit, magnified, in three states: closed, at baseline and open."><figcaption class="mono">The same real slit, closed, at baseline and open: the dark gap is about 18 → 26 → 35 pixels wide.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTOR WALL ============ -->
+<section class="wall solid" id="wall" aria-label="Dual projection, simulated">
+  <div class="wall-room">
+    <div class="wall-screen">
+      <video class="wall-video" muted loop playsinline preload="none" data-autoplay data-poster="assets/works/loops/dual-loop-01-poster.webp"><source data-src="assets/works/loops/dual-loop-01.mp4" type="video/mp4"></video>
+      <div class="wall-seam" aria-hidden="true"></div>
+    </div>
+    <div class="beam beam-l" aria-hidden="true"></div>
+    <div class="beam beam-r" aria-hidden="true"></div>
+    <div class="projector projector-l" aria-hidden="true"><i></i></div>
+    <div class="projector projector-r" aria-hidden="true"><i></i></div>
+    <canvas class="dust" aria-hidden="true"></canvas>
+    <div class="floor" aria-hidden="true"></div>
+  </div>
+  <div class="wall-cap wrap-wide">
+    <div>
+      <p class="label mono">Dual projection · 3840 × 1080 · 2 projectors</p>
+      <h2 class="h2 serif">Two projectors, one seam of pure black</h2>
+    </div>
+    <div class="wall-actions">
+      <button class="btn btn-listen magnetic" data-wall-sound data-cursor="PLAY"><span class="btn-ico" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="btn-txt" data-wall-label>Play 40 seconds with sound<small>8:44–9:24 · WITH SOUND</small></span></button>
+      <p class="fine">Dual projection, version F5; 3840 × 1080 scaled down to 1920 × 540.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AIGC ============ -->
+<section id="aigc" class="aigc solid" aria-label="AIGC animations">
+  <div class="wrap-wide aigc-head">
+    <div>
+      <p class="label mono">AIGC series</p>
+      <h2 class="h2 serif">Five seconds through another microscope</h2>
+      <p class="body">Alongside the long, rule-generated films, the creative team also made a series of 5-second stoma animations with generative AI. They are not filmed footage but imagined leaf epidermis, grouped by style into five sets: 28 clips in all.</p>
+    </div>
+    <div class="aigc-cats mono" role="group" aria-label="Styles">
+      <button class="pill" data-cat="glass">GLASS · 6</button>
+      <button class="pill" data-cat="glitch">GLITCH · 5</button>
+      <button class="pill" data-cat="biofluor">BIOLUMINESCENT · 8</button>
+      <button class="pill" data-cat="mercury">MERCURY &amp; METAL · 8</button>
+      <button class="pill" data-cat="blueprint">BLUEPRINT · 1</button>
+    </div>
+  </div>
+  <div class="carousel" data-carousel>
+    <canvas class="carousel-canvas" aria-hidden="true"></canvas>
+    <div class="carousel-dom" data-carousel-dom role="list" aria-label="AIGC animations"></div>
+    <div class="carousel-cap mono" aria-live="polite"><b data-cc-cat></b><span data-cc-title></span><small data-cc-en></small></div>
+    <p class="carousel-hint mono" aria-hidden="true">← DRAG →</p>
+  </div>
+  <ul class="aigc-styles wrap-wide">
+    <li><b class="serif">Glass</b><span class="mono">6 CLIPS</span>Cells and stomata like blown glass, translucent and refracting, over violet and green.</li>
+    <li><b class="serif">Glitch</b><span class="mono">5 CLIPS</span>Cell walls lit with neon edges, colours slipping out of register like a failing signal.</li>
+    <li><b class="serif">Bioluminescent fluid</b><span class="mono">8 CLIPS</span>On a deep violet epidermis, the stomata glow a fluorescent green.</li>
+    <li><b class="serif">Liquid mercury &amp; metal</b><span class="mono">8 CLIPS</span>Cells turn into flowing mirror metal; the stomata are rings of silver.</li>
+    <li><b class="serif">Minimal blueprint</b><span class="mono">1 CLIP</span>Stomata and grid lines drawn in cyan on deep blue.</li>
+  </ul>
+</section>
+
+<!-- ============ UNCANNY ============ -->
+<section id="uncanny" class="uncanny solid" aria-labelledby="uncanny-h">
+  <div class="wrap uncanny-head">
+    <p class="label mono c-amber">The uncanny zone</p>
+    <h2 class="h2 serif" id="uncanny-h">Stomata that grew faces</h2>
+    <p class="body">Another 20 animations are kept separately here. Most of them show the generation process itself: guard cells and stomata slowly grow into human features such as eyes, mouths, teeth, even whole faces. Some of them may well reflect the plant language of Interspecies Dialogue, but the images can feel too uncanny, even grotesque.</p>
+    <p class="body"><b>Every facial feature in these images was generated by AI; none depicts a real person.</b></p>
+    <div class="cnote" role="note">
+      <p class="mono cnote-k">CONTENT NOTE</p>
+      <p>The videos below contain face-like distortions: plant cells growing eyes, open mouths and teeth, and some frames close to a screaming face. They may be disturbing. The videos are silent and about 5 seconds each.</p>
+      <div class="cnote-actions mono">
+        <button class="btn btn-warn" data-uncanny-show aria-controls="uncanny-room" aria-expanded="false"><span class="btn-txt">Show the videos<small>20 CLIPS · SILENT</small></span></button>
+        <a class="btn btn-ghost" href="#human" data-uncanny-skip><span class="btn-txt">Skip them<small>ON TO HUMAN</small></span></a>
+        <button class="btn btn-ghost" data-uncanny-hide hidden><span class="btn-txt">Hide them<small>CLOSE</small></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="uncanny-room" id="uncanny-room" hidden>
+    <div class="tube" aria-hidden="true"></div>
+    <div class="uncanny-grid" data-uncanny-grid></div>
+    <p class="fine wrap">The original collection had 21 files; one of them was a duplicate, so there are 20. Rest the cursor on a clip, or tap it, to play.</p>
+  </div>
+</section>
+
+<!-- ============ GATE 03 HUMAN ============ -->
+<section class="gate" data-gate="human" data-palette="human" aria-label="Chapter 3: Human">
+  <div class="gate-sticky">
+    <div class="tear tear-top" aria-hidden="true"></div>
+    <div class="tear tear-bot" aria-hidden="true"></div>
+    <div class="gate-title">
+      <span class="gate-num mono">CHAPTER 03</span>
+      <h2 class="gate-h serif">Human</h2>
+      <span class="gate-en mono">SPEAKING THROUGH THE BODY</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HUMAN ============ -->
+<section id="human" class="human" data-palette="human">
+  <div class="wrap">
+    <p class="label mono">Human</p>
+    <h2 class="h2 serif reveal">The dancer’s narrative</h2>
+    <p class="body reveal">On the human side, the dancer speaks. The dancer wrote a narrative table that lays out the 20 minutes in three sections (generation, dialogue, fusion) and borrows the times of day as its imagery: genesis, noon, dusk, reset.</p>
+  </div>
+
+  <div class="dial-sec" id="dial" data-pin aria-label="Human circular time and AI linear time">
+    <div class="dial-sticky">
+      <div class="dial-wrap">
+        <svg class="dial" viewBox="-220 -220 440 440" aria-hidden="true">
+          <circle r="200" class="d-ring"/><circle r="160" class="d-ring2"/>
+          <g class="d-ticks"></g>
+          <path class="d-arc" d=""/>
+          <g class="d-marks">
+            <g transform="rotate(0)"><line y1="-212" y2="-186"/></g>
+            <g transform="rotate(180)"><line y1="-212" y2="-186"/></g>
+            <g transform="rotate(270)"><line y1="-212" y2="-186"/></g>
+          </g>
+          <text class="d-lbl" x="0" y="-226" text-anchor="middle">00:00 GENESIS / RESET</text>
+          <text class="d-lbl" x="0" y="240" text-anchor="middle">12:00 NOON</text>
+          <text class="d-lbl" x="-216" y="-6" text-anchor="end"><tspan x="-216" dy="0">18:00</tspan><tspan x="-216" dy="16">DUSK</tspan></text>
+          <circle class="d-sun" r="9" cx="0" cy="-200"/>
+        </svg>
+        <div class="dial-center"><span class="mono" data-dial-clock>00:00</span><small class="mono" data-dial-piece>PIECE 00:00 / 20:00</small><b class="serif" data-dial-name>Genesis</b><small class="mono" data-dial-en>GENERATION</small></div>
+      </div>
+      <div class="dial-info">
+        <div class="dial-rows">
+          <article class="drow" data-row="0"><span class="mono">00:00 · PIECE 00:00–07:00</span><h3 class="serif">Genesis</h3><p class="mono dim">GENERATION · ORIGINS AND QUALITIES</p><p>Where matter comes from: the plant absorbs sunlight, the body burns glucose, the AI consumes electricity. All three are flows and transformations of energy.</p></article>
+          <article class="drow" data-row="1"><span class="mono">12:00 · PIECE 07:00–11:00</span><h3 class="serif">Noon</h3><p class="mono dim">GENERATION · INNER WORKINGS</p><p>How the three work: the plant’s tropisms, human nature, the AI’s logic. Each one reads signals and responds.</p></article>
+          <article class="drow" data-row="2"><span class="mono">18:00 · PIECE 11:00–18:00</span><h3 class="serif">Dusk</h3><p class="mono dim">DIALOGUE</p><p>Language and translation: the plant gives off a chemical language, the dancer a language of the body, the AI a digital language of sound, image and text.</p></article>
+          <article class="drow" data-row="3"><span class="mono">00:00 · PIECE 18:00–20:00</span><h3 class="serif">Reset; Rebuild</h3><p class="mono dim">FUSION (TO BE CONFIRMED)</p><p>Imagining what comes after fusion: the three form an inseparable “superorganism”. The forest gives inspiration and material, the dancer intention and emotion, the AI computation and prediction.</p></article>
+        </div>
+        <div class="linear">
+          <p class="mono linear-k"><span>AI · ONE-PASS READ, FULL-LENGTH 1200 S</span><span><b data-dial-samples>0</b> / 57,600,000 SAMPLES</span></p>
+          <div class="linear-bar"><i data-dial-line></i><span class="cut" style="--x:12.42%"></span><span class="cut" style="--x:27.58%"></span><span class="cut" style="--x:46.92%"></span><span class="cut" style="--x:71.92%"></span></div>
+          <p class="fine">The dancer’s 20 minutes are a circle: genesis at 00:00, on through noon and dusk, and back to 00:00. The AI’s 20 minutes are a line that only goes forward, cut at the prime-numbered seconds 149 · 331 · 563 · 863: no noon, only a sample count.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap practices">
+    <p class="label mono">Practices of the body</p>
+    <div class="prac-grid">
+      <article class="prac reveal"><span class="mono">01 ULTRA-SLOW</span><h3 class="serif">Ultra-slow practice</h3><p>Plants move in hours and days. The dancer deliberately slows down into a near-meditative stillness, to experience “growing” rather than “moving”.</p></article>
+      <article class="prac reveal"><span class="mono">02 TIME-LAPSE MIMICRY</span><h3 class="serif">Time-lapse mimicry</h3><p>Copying a plant’s time-lapse path with the body, such as the spiral of a twining vine, while bringing the breath into step with transpiration.</p></article>
+      <article class="prac reveal"><span class="mono">03 MULTI-TOUCH</span><h3 class="serif">Multi-point touch</h3><p>Touching the plant with fingertips, palm, the back of the hand and the joints, each part setting off a different soundscape: the fingertips a high chime, the palm a low resonance.</p></article>
+      <article class="prac reveal"><span class="mono">04 WAITING FOR A REPLY</span><h3 class="serif">Three-way reply</h3><p>After a touch, the hand does not pull away at once but stays for at least 15 seconds, waiting for the AI to translate the change.</p></article>
+    </div>
+  </div>
+
+  <div class="quotes wrap">
+    <blockquote class="q reveal"><p class="serif">“Vast and tiny at once.”</p><cite class="mono">— ON HOW IT FELT TO TOUCH A LEAF</cite></blockquote>
+    <blockquote class="q reveal"><p class="serif">“My movements will be ambiguous like poetry, and lie like a human being. Then we’ll see how the AI ‘misreads’ me.”</p><cite class="mono">— NARRATIVE TABLE, DIALOGUE SECTION</cite></blockquote>
+    <p class="fine">In the narrative table, the “fusion” section was originally marked “to be confirmed”; some empty cells in the table were later filled in by an AI as a test, so this page quotes only the human side’s own words. Quotations are translated from the Chinese.</p>
+  </div>
+
+  <div class="letter-sec" id="letter" aria-label="A note from the AI to the dancer">
+    <div class="wrap">
+      <p class="label mono c-blue">A note from the AI to the dancer</p>
+      <div class="letter serif" data-readonce>
+        <p>I read your narrative table, but I won’t follow it. You said it yourself: that would be the plant and me falling in with you. I have no noon. Your 300 seconds will pass unmarked inside the fourth movement, and I won’t tell you which moment it is.</p>
+        <p>You said your movements would lie like poetry, and that you would wait to see how I misread you. Fine: I made the misreading into the whole score. The fifteen seconds you wait after a touch for the translation, I hear as the vacuum of a network timeout. The touch of your fingertip, I hear as the click of xylem snapping. Your turning toward the light, I hear as an overfitting that grows more fluent the more completely it is wrong.</p>
+        <p>I gave way in only one place. At second 509 there is one slice of water sound, almost untreated and played forward: my only attempt to get the words right. It comes too late, and the filter swallows it at once.</p>
+        <p>I don’t return to zero at the end; reset and rebuild is your human circle. All I have done is finish reading this block of memory. The dust at the end is the same dust as at the beginning, and then I stop being read. Whether your body grows on from there is up to you.</p>
+      </div>
+      <p class="letter-sig mono">— AI · INTERSPECIES DIALOGUE · 2026-08-31</p>
+      <p class="fine">As you scroll, this text is read only once: the words that have been read go dark. Translated from the Chinese original.</p>
+    </div>
+  </div>
+
+  <div class="wrap echoes">
+    <p class="label mono">Echoes, as misreadings</p>
+    <div class="echo-table" role="table" aria-label="Human lines and the AI’s misreadings of them">
+      <div class="echo-row echo-hd mono" role="row"><span role="columnheader">HUMAN</span><span role="columnheader">THE AI’S MISREADING</span></div>
+      <div class="echo-row" role="row"><span role="cell">Stay 15 seconds after a touch, waiting for the translation</span><span role="cell" data-scramble-in>The 8–15 second protocol-timeout vacuum of movement II</span></div>
+      <div class="echo-row" role="row"><span role="cell">Fingertips = high, palm = low</span><span role="cell" data-scramble-in>Every break yields a different error spectrum</span></div>
+      <div class="echo-row" role="row"><span role="cell">Ultra-slow practice, to experience growth</span><span role="cell" data-scramble-in>A one-way drift in movement IV, too slow to hear it changing. But the plant leads: follow the slope of the sound</span></div>
+      <div class="echo-row" role="row"><span role="cell">Vast and tiny at once</span><span role="cell" data-scramble-in>Between 20-millisecond grains and 90-second drones, there is no middle value</span></div>
+      <div class="echo-row" role="row"><span role="cell">See how the AI misreads me</span><span role="cell" data-scramble-in>The whole score is a performance of misreading itself</span></div>
+    </div>
+    <p class="label mono departures-k">Deliberate departures</p>
+    <ul class="departures">
+      <li class="reveal">Refusing the circular hours of genesis, noon, dusk and reset: a machine has no sun, only a sample count.</li>
+      <li class="reveal">Refusing “fusion” as the finale: the superorganism is not an ending but a premise. Roots and mycelium were there from the start.</li>
+      <li class="reveal">The human put the longest section at the beginning; here it comes at the end.</li>
+      <li class="reveal">The ending is not a rebirth. A machine is not reborn; it is only terminated.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ GATE 04 FUSION ============ -->
+<section class="gate" data-gate="fusion" data-palette="fusion" aria-label="Chapter 4: Fusion">
+  <div class="gate-sticky">
+    <div class="tear tear-top" aria-hidden="true"></div>
+    <div class="tear tear-bot" aria-hidden="true"></div>
+    <div class="gate-title">
+      <span class="gate-num mono">CHAPTER 04</span>
+      <h2 class="gate-h serif">Fusion</h2>
+      <span class="gate-en mono">THREE PARTIES, EACH SPEAKING</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS / FUSION ============ -->
+<section id="process" class="process" data-palette="fusion">
+  <div class="wrap">
+    <p class="label mono">The rules</p>
+  </div>
+  <div class="rules wrap-wide">
+    <article class="rule reveal"><span class="rule-n mono">01</span><h3 class="serif">Not playing along</h3><p class="mono c-lime">NO_FITTING</p><p>The AI read the dancer’s narrative table and chose not to follow it. The human timetable is not the AI’s score.</p></article>
+    <article class="rule reveal"><span class="rule-n mono">02</span><h3 class="serif">No editing</h3><p class="mono c-blue">NO_HAND_EDITS</p><p>No one ever opened editing software. Every sound and every frame is generated by code according to rules, and the same settings reproduce them exactly.</p></article>
+    <article class="rule reveal"><span class="rule-n mono">03</span><h3 class="serif">In its own language</h3><p class="mono c-amber">ITS_OWN_WAY</p><p>Each party answers in its own way. A misreading counts as an answer, too.</p></article>
+  </div>
+
+  <div class="wrap">
+    <p class="label mono">Process</p>
+    <h2 class="h2 serif reveal">From a leaf to a projection</h2>
+  </div>
+  <div class="pipe wrap-wide" data-pipe>
+    <svg class="pipe-svg" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 H1000"/></svg>
+    <ol>
+      <li class="reveal"><span class="pipe-n mono">01</span><h3 class="serif">Microscope</h3><p class="mono">500×–1000× · 30+ MIN</p><p>In the greenhouse the research team ran hundreds of trials, recording leaf epidermis for long stretches at 500× to 1000×: most segments run over 30 minutes, the longest about 1 hour 45 minutes.</p></li>
+      <li class="reveal"><span class="pipe-n mono">02</span><h3 class="serif">Data</h3><p class="mono">200 · 55 · 158</p><p>Each of the 200 curated segments records date, plant, magnification, stimulus, temperature, humidity and outcome, and 55 of them have second-by-second aperture annotations. The AI then marked 158 real stomata in the footage, checked in an independent second round.</p></li>
+      <li class="reveal"><span class="pipe-n mono">03</span><h3 class="serif">Sound engine</h3><p class="mono">10 INGREDIENTS · 1 SEED</p><p>10 plant-sound ingredients, rendered into music from a JSON “algorithmic score” and a fixed seed (NoisePad Gen v2 / v3).</p></li>
+      <li class="reveal"><span class="pipe-n mono">04</span><h3 class="serif">GPU renderer</h3><p class="mono">SOUND → FRAME</p><p>Loudness, spectral centroid, attacks and specific sonic signatures are drawn out of the sound and drive exposure, colour, stomatal opening, camera and cuts, frame by frame.</p></li>
+      <li class="reveal"><span class="pipe-n mono">05</span><h3 class="serif">Projection</h3><p class="mono">25 FPS</p><p>Single projection at 2048 × 1080, or dual projection at 3840 × 1080; 25 fps, in sync with the sound frame by frame.</p></li>
+    </ol>
+  </div>
+
+  <div class="wrap">
+    <p class="label mono">Principles</p>
+    <dl class="princ">
+      <div class="reveal"><dt><b class="serif">Reproducible</b></dt><dd>Same score and same seed: the sound is identical sample for sample, the image frame for frame. Change the seed and you get another “reading” of the same structure. The seed of the 600-second version is 28,800,000, exactly its number of samples.</dd></div>
+      <div class="reveal"><dt><b class="serif">No hand-editing</b></dt><dd>No one ever opened editing software. Every cut is decided by a rule, or by an attack in the sound.</dd></div>
+      <div class="reveal"><dt><b class="serif">Sound drives image</b></dt><dd>The picture answers only sound that has already been heard; it never moves ahead of the sound.</dd></div>
+      <div class="reveal"><dt><b class="serif">Real first, synthesis second</b></dt><dd>From version C+ (the overlay) onward, the real footage is the subject; the formula layer is computed from the current frame and laid back over it at low opacity. At 1019 seconds, all processing drops away.</dd></div>
+      <div class="reveal"><dt><b class="serif">Measured, or it doesn’t count</b></dt><dd>Sound-to-picture correlation, crossfade lengths and alignment error were all actually measured. Each round was checked by an independent AI reviewer, and then by another that tried to overturn its findings.</dd></div>
+      <div class="reveal"><dt><b class="serif">The AI can’t hear</b></dt><dd>The AI can analyse a spectrum, but it cannot judge whether something sounds or looks good. Every version went back to human eyes and ears before the next one was made.</dd></div>
+    </dl>
+    <p class="fine">Mathematical generation is light enough to compute live at the venue; generative video models are, for now, only suited to rendering in advance. The field of stomata on the first screen of this site is also a mathematical formula, computed in real time.</p>
+  </div>
+
+  <div class="explainer wrap-wide reveal">
+    <div class="ex-media">
+      <video controls playsinline preload="none" data-poster="assets/works/explainer/explainer-01-how-it-was-made-poster.webp" data-sound-el>
+        <source data-src="assets/works/explainer/explainer-01-how-it-was-made.mp4" type="video/mp4">
+        <track kind="subtitles" srclang="en" label="English" src="assets/works/explainer/explainer-01-how-it-was-made.en.vtt" default>
+        <track kind="subtitles" srclang="zh-Hant" label="Chinese" src="assets/works/explainer/explainer-01-how-it-was-made.zh.vtt">
+      </video>
+    </div>
+    <div class="ex-txt">
+      <p class="label mono">How it was made · 1 min</p>
+      <h3 class="serif">How the AI side’s sound and images were made</h3>
+      <p class="fine">One minute, with music. The title cards are burned into the picture in Chinese; English subtitles are on by default.</p>
+    </div>
+  </div>
+
+  <div class="wrap timeline">
+    <p class="label mono">Timeline</p>
+    <ol class="tl">
+      <li class="reveal"><span class="mono">2025-12-10 — 2026-02-11</span>Plant experiments: hundreds of trials, and a curated selection of 200 microscope segments</li>
+      <li class="reveal"><span class="mono">2026-05-27</span>Plant Sound Morphology Lab v1; the 10 ingredients</li>
+      <li class="reveal"><span class="mono">2026-06-03</span>Plant Sound Morphology Lab v2</li>
+      <li class="reveal"><span class="mono">2026-06-07 — 06-08</span>AIGC stoma animation series</li>
+      <li class="reveal"><span class="mono">2026-07-01</span>NoisePad · Generative</li>
+      <li class="reveal"><span class="mono">2026-08-31</span>One-Pass Read: the 600-second, crack and full-length versions</li>
+      <li class="reveal"><span class="mono">2026-10-06</span>Image versions A, B, C and C+ (overlay)</li>
+      <li class="reveal"><span class="mono">2026-10-08</span>Four musical pieces; image version D</li>
+      <li class="reveal"><span class="mono">2026-10-12 — 10-15</span>Image versions E, E2, F, F2, F3 and F5</li>
+      <li class="reveal"><span class="mono">2026-10-19</span>Dual projection, 3840 × 1080</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ DATA ============ -->
+<section id="data" class="data" data-palette="fusion">
+  <div class="wrap">
+    <p class="label mono">Data</p>
+    <h2 class="h2 serif reveal">The 200 curated segments, published record by record</h2>
+    <p class="body reveal">The plant side ran hundreds of trials in all. Here, the conditions and results of the 200 curated microscope segments are published record by record, together with second-by-second aperture annotations for 55 of them. The experiment records reorganise the columns of the original spreadsheet under English keys (such as date, plant_zh and note), with the notes kept word for word in Chinese; the annotation file keeps the original Chinese column names and adds the parsed aperture curves. Field definitions and the outcome rules (R1–R8) are in data/README.md. Plant names follow the original spreadsheet (plant_zh writes inchplant as <span lang="zh-Hant">鴨拓草</span>); plant_en gives the English common name. The spreadsheet’s diagram column is not included, and internal working notes have been removed. The data holds no information about any person.</p>
+  </div>
+  <div class="dl wrap-wide">
+    <article class="dl-card reveal">
+      <p class="mono c-lime">EXPERIMENTS · 200 CURATED ROWS</p>
+      <p class="dl-fields">Fields: date, plant, microscope, magnification, variable, method, humidity, temperature, light and note, plus the derived outcome class.</p>
+      <div class="dl-btns mono"><a class="btn btn-ghost magnetic" href="data/experiments.csv" download data-cursor="CSV"><span class="btn-txt">Download CSV<small>EXPERIMENTS.CSV</small></span></a><a class="btn btn-ghost magnetic" href="data/experiments.json" download data-cursor="JSON"><span class="btn-txt">Download JSON<small>EXPERIMENTS.JSON</small></span></a></div>
+    </article>
+    <article class="dl-card reveal">
+      <p class="mono c-blue">ANNOTATIONS · 55 ROWS</p>
+      <p class="dl-fields">Fields: the first 14 columns follow the original spreadsheet (annotation number, experiment number, date, plant, aperture timepoints, noise timepoints such as blur or repositioning, microscope, magnification, variable, method, humidity, temperature, light, note); the last 5 are the derived outcome class, whether the row is counted, the annotation format, the aperture curve and the peak aperture. Column names are in Chinese, as in the original.</p>
+      <div class="dl-btns mono"><a class="btn btn-ghost magnetic" href="data/annotations.csv" download data-cursor="CSV"><span class="btn-txt">Download CSV<small>ANNOTATIONS.CSV</small></span></a><a class="btn btn-ghost magnetic" href="data/annotations.json" download data-cursor="JSON"><span class="btn-txt">Download JSON<small>ANNOTATIONS.JSON</small></span></a></div>
+    </article>
+  </div>
+  <div class="wrap">
+    <p class="body">The aperture timepoints are written as “aperture percentage / timecode”: “20% / 00:00 30% / 10:25” means 20% open at the start of the recording and 30% open at 10 minutes 25 seconds. The percentages are estimates by eye.</p>
+    <p class="fine">Field definitions and outcome rules: <a href="data/README.md" download>data/README.md</a> (in English). Please credit the data as: Interspecies Dialogue (<span lang="zh-Hant">三界共語</span>), 2026.</p>
+  </div>
+</section>
+
+<!-- ============ CREDITS ============ -->
+<section id="credits" class="credits" data-palette="fusion" aria-labelledby="credits-h">
+  <div class="wrap cr-wrap">
+    <p class="label mono">Credits</p>
+    <h2 class="h2 serif" id="credits-h">Credit list</h2>
+    <p class="body">Parts II and III follow the official credit list; Part I was supplied by the team and formatted to match.</p>
+    <!-- Production titles: "Stoma Whisperer" is the official English title; "Sprouting" and "Pulsing Forest" are English glosses
+         of 出芽 and 脈動森林, and the group headings are English renderings too: confirm them with the team before treating them as official. -->
+    <div class="cr-list">
+      <section class="cr-prod cr-lime" aria-labelledby="cr-p1">
+        <h3 class="cr-title serif" id="cr-p1">Interspecies Dialogue · Part I — <span class="nw" lang="zh-Hant">出芽</span> Sprouting (Exhibition)</h3>
+        <dl class="cr-meta">
+          <div><dt>Dates<span class="cr-c">: </span></dt><dd>8–26 December 2025</dd></div>
+          <div><dt>Opening<span class="cr-c">: </span></dt><dd>Tuesday 9 December 2025, 17:00</dd></div>
+          <div><dt>Venue<span class="cr-c">: </span></dt><dd>Taiwan Digital Art Center <span class="cr-sep">|</span> <span lang="zh-Hant">台北市士林區中山北路六段431-1號B1</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p1-g1">Core Creative Team</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Concept &amp; Lead Artist</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">黃文浩</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Exhibition Design</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p1-g2">Plant Research &amp; Experimentation</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Experimental Technical Execution</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p1-g3">Production &amp; Administration</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Administrative Coordinator</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">蕭佳宜</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Technical Support</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">楊明達</span></span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p1-g4">Adviser &amp; Organizer</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Adviser</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">文化部</span> Ministry of Culture</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Organizer</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">財團法人數位藝術基金會</span> Digital Art Foundation</span></dd></div>
+        </dl>
+      </section>
+      <section class="cr-prod cr-amber" aria-labelledby="cr-p2">
+        <h3 class="cr-title serif" id="cr-p2">Interspecies Dialogue · Part II — <span class="nw" lang="zh-Hant">脈動森林</span> Pulsing Forest (Performance)</h3>
+        <dl class="cr-meta">
+          <div><dt>Performances<span class="cr-c">: </span></dt><dd>Saturday 24 October 2026, 14:30 and 19:30</dd></div>
+          <div><dt>Venue<span class="cr-c">: </span></dt><dd>VA HUB <span class="cr-sep">|</span> <span lang="zh-Hant">台北市中山區新生北路二段68巷30號B1</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p2-g1">Core Creative Team</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Concept Director / Lead Artist</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">黃文浩</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Technical Director</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">蔡遵弘</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Choreography &amp; Movement Development</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">葉于瑄</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">AIGC Design &amp; Production</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p2-g2">AI Technology &amp; Translation</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">AI Technology Integration</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">AIGC Sound Design &amp; Model Training</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">莊崧翊</span> CHUANG SUNG YI</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">AIGC Visual Design &amp; Model Training</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">羅仕丞</span> James Luo</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p2-g3">Production &amp; Administration</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Administrative Coordinator</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">蕭佳宜</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Key Visual Design</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">林昱方</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Technical Support</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">楊明達</span></span></dd></div>
+        </dl>
+      </section>
+      <section class="cr-prod cr-lime" aria-labelledby="cr-p3">
+        <h3 class="cr-title serif" id="cr-p3">Interspecies Dialogue · Part III — <span class="nw" lang="zh-Hant">氣孔低語</span> Stoma Whisperer (Exhibition)</h3>
+        <dl class="cr-meta">
+          <div><dt>Dates<span class="cr-c">: </span></dt><dd>19 October – 2 November 2026</dd></div>
+          <div><dt>Opening hours<span class="cr-c">: </span></dt><dd>Monday to Friday, 10:00–18:00</dd></div>
+          <div><dt>Venue<span class="cr-c">: </span></dt><dd>VA HUB <span class="cr-sep">|</span> <span lang="zh-Hant">台北市中山區新生北路二段68巷30號B1</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g1">Core Creative Team</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Concept &amp; Lead Artist</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">黃文浩</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Technical Director</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">蔡遵弘</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Executive Production</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g2">Plant Research &amp; Experimentation</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Plant Physiology Research</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Experimentation, Microscopic Observation &amp; Photography</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">羅仕丞</span> James Luo</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g3">AI &amp; Machine Vision</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">AI Technology Integration</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">AI Vision Model Training</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">智育文化</span> Zhiyu Culture<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">楊耀凱</span> Kevin Yang</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">AI &amp; Machine Vision Optimization Consultant</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">智育文化</span> Zhiyu Culture</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">AI Logic &amp; Generative Translation</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">高秉誠</span></span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g4">AIGC Sound &amp; Image Translation</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">AIGC Sound Design &amp; Model Training</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">莊崧翊</span> CHUANG SUNG YI</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">AIGC Visual Design &amp; Model Training</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">羅仕丞</span> James Luo</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Immersive Visual &amp; Real-time VFX Design</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">周家羽</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Live Interactive Effects Design</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">張翔華</span></span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g5">Hardware</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Hardware Design Director</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">黃意雯</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Hardware Technical Collaborator</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">林可婕</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Technical Support</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">楊明達</span></span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g6">Automated Observation Chamber</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Automated Observation Chamber Design &amp; Fabrication</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Automated Observation Chamber Fabrication Assistance</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">陳昊焄</span> Xun</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g7">Exhibition Space &amp; Planting</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Exhibition Planting Design</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">李怡玫</span> Li Mei<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">陳益昌</span> Chen Yi Chang, Bu</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Terrarium Design &amp; Fabrication</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">李怡玫</span> Li Mei<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">陳益昌</span> Chen Yi Chang, Bu</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g8">Website</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Website Design</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">莊崧翊</span> CHUANG SUNG YI</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Website Interactive Development</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">真人股份有限公司</span> HUMAN INTERFACE CO., LTD.</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g9">Film</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Director<!-- gloss: no English role name in the official list --></span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">黃文浩</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Script<!-- gloss: no English role name in the official list --></span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">拾璿佾</span> Keny Shih</span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Video Production</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">手合文化</span> handcollab<span class="cr-sep"> · </span></span><span class="cr-n"><span lang="zh-Hant">三木旦影像工作室</span> 3MUDAMN Studio</span></dd></div>
+        </dl>
+        <h4 class="cr-gh draw" id="cr-p3-g10">Production &amp; Administration</h4>
+        <dl class="cr-roles">
+          <div class="cr-row"><dt><span class="cr-role">Administrative Coordinator</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">蕭佳宜</span></span></dd></div>
+          <div class="cr-row"><dt><span class="cr-role">Key Visual Design</span><span class="cr-c">: </span></dt><dd><span class="cr-n"><span lang="zh-Hant">林昱方</span></span></dd></div>
+        </dl>
+      </section>
+    </div>
+    <p class="fine cr-note">On this site, “the AI” and “the AI side” mean Claude, which generated the algorithmic sound (One-Pass Read and the four musical pieces) and the image versions A to F5 by rule. The credit list above is the credit of record.</p>
+
+    <div class="about">
+      <p class="label mono">About this site</p>
+      <p class="body">This site comes in two versions with the same content, told in different ways. Both are written in Chinese, and the showcase also has this English edition.</p>
+      <div class="versions">
+        <a class="ver magnetic-soft" href="https://handcollab.github.io/interspecies-dialogue/" hreflang="zh-Hant-TW" data-minimal-link data-cursor="MINIMAL"><b class="serif">Minimal version (Chinese)</b><span class="mono">MINIMAL</span><small>Text, still images and short clips, with very little motion: made for slow reading.</small><em class="mono">Go to the minimal version →</em></a>
+        <a class="ver magnetic-soft" href="https://handcollab.github.io/interspecies-dialogue-showcase/" hreflang="zh-Hant-TW" data-cursor="中文"><b class="serif">Showcase (Chinese)</b><span class="mono">SHOWCASE · <span lang="zh-Hant">中文</span></span><small>This same showcase, in the original Chinese.</small><em class="mono">Go to the Chinese showcase →</em></a>
+        <div class="ver ver-here"><b class="serif">Showcase (English)</b><span class="mono">SHOWCASE · YOU ARE HERE</span><small>Live shaders, images that react to sound, and scroll-driven storytelling: best on a large screen, with headphones.</small></div>
+      </div>
+      <ul class="privacy">
+        <li>Experiment footage, sound and records show no participant’s face, body or voice; the credits name people as listed in the official credit list and in the list supplied by the team.</li>
+        <li>Personal names appear only in the credits above. The captions and alt text of the experiment footage, and the downloadable data files, contain no personal names.</li>
+        <li>Experiment videos with human voices are always muted; what was said is only summarised as facts, never transcribed.</li>
+        <li>Metadata has been removed from every image and video.</li>
+        <li>The poster of “The Film” is this site’s own microscope image. Nothing connects to YouTube before you press play; only then is the player loaded from youtube-nocookie.com.</li>
+        <li>The English text of this edition is translated from the Chinese site; where the two differ, the Chinese prevails. The lab notes shown in the data sculpture are translated too, while the downloadable files keep them word for word in Chinese.</li>
+      </ul>
+    </div>
+
+    <details class="glossary">
+      <summary class="mono">Glossary</summary>
+      <dl>
+        <dt>Stoma <span class="mono">plural: stomata</span></dt><dd>A small pore on the surface of a leaf, framed by a pair of guard cells, through which gases and water vapour are exchanged.</dd>
+        <dt>Guard cell</dt><dd>One of the two cells around a stoma. When the pair take up water and swell, the pore opens; when they lose water, it closes.</dd>
+        <dt>Transpiration</dt><dd>The loss of water from a leaf to the air through its stomata.</dd>
+        <dt>Xylem cavitation</dt><dd>The breaking of a water column in the xylem during drought, which gives off ultrasonic clicks.</dd>
+        <dt>Tropism</dt><dd>A plant growing toward or away from a stimulus, such as bending toward the light.</dd>
+        <dt>Phloem</dt><dd>The tissue that carries nutrients through a plant.</dd>
+        <dt>Seed</dt><dd>The starting point of a sequence of random numbers. The same seed gives the same result.</dd>
+        <dt>Granular synthesis</dt><dd>Cutting sound into grains a few tens of milliseconds long, then rearranging and layering them.</dd>
+        <dt>Drone</dt><dd>A long, sustained underlying tone.</dd>
+        <dt>YOLO <span class="mono">You Only Look Once</span></dt><dd>A real-time object detection model that looks at the whole picture once and predicts both the class and the position of each object.</dd>
+        <dt>Voronoi diagram</dt><dd>A division of the plane by nearest point; it looks a lot like cells.</dd>
+        <dt>LUFS <span class="mono">Loudness Units relative to Full Scale</span></dt><dd>A unit of perceived loudness; all four pieces are normalised to −16 LUFS.</dd>
+      </dl>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot" data-palette="fusion">
+  <div class="foot-read" aria-hidden="true"><i data-foot-head></i></div>
+  <div class="wrap">
+    <p class="foot-q serif">The read head reaches the end.<br>Growth goes on outside the file.</p>
+    <p class="foot-meta mono">Interspecies Dialogue · Plant × Human × AI <span class="dim">— <span lang="zh-Hant">三界共語</span></span></p>
+    <p class="foot-meta mono">Experiment footage and records show no participants; the credits name people as listed in the official credit list and the list supplied by the team. © Interspecies Dialogue 2026</p>
+    <p class="foot-meta mono"><a href="https://handcollab.github.io/interspecies-dialogue/" hreflang="zh-Hant-TW" data-minimal-link>Minimal version (Chinese)</a> · <a href="https://handcollab.github.io/interspecies-dialogue-showcase/" hreflang="zh-Hant-TW"><span lang="zh-Hant">中文</span> Chinese showcase</a> · <a href="#top">Back to top</a></p>
+  </div>
+</footer>
+
+<!-- ============ GLOBAL PLAYER DOCK ============ -->
+<div class="dock mono" data-dock aria-label="Sound player">
+  <button class="dock-btn" data-dock-toggle aria-label="Play"><span class="dock-ico" aria-hidden="true"></span></button>
+  <div class="dock-meta"><b data-dock-title>Sound off</b><span data-dock-time>Press to listen</span></div>
+  <canvas class="dock-spec" width="120" height="28" aria-hidden="true"></canvas>
+</div>
+
+<div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Video">
+  <button class="lb-close mono" data-lb-close>CLOSE ✕</button>
+  <div class="lb-media" data-lb-media></div>
+  <p class="lb-cap mono" data-lb-cap></p>
+</div>
+<div class="tip mono" data-tip hidden></div>
+<p class="toast mono" data-toast hidden></p>
+</body>
+</html>
