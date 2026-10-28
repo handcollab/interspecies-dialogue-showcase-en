@@ -1113,3 +1113,20 @@ h3, h4, .princ dt b, .aigc-styles b { line-height: 1.28; text-wrap: balance; }
 @media (max-width: 350px) { .lang-cur { display: none; } }
 /* the narrowest phones: the English scope notes need a fourth line */
 @media (max-width: 340px) { .scope-notes { -webkit-line-clamp: 4; } }
+
+/* 時辰面板：四段疊在同一格（容器高度＝最長那段，不再壓到下方的 AI 線）；標題與英文小字固定同一行，字級隨欄寬縮放 */
+.dial-info { container-type: inline-size; }
+.dial-rows { display: grid; min-height: 0; }
+.drow { position: relative; inset: auto; grid-area: 1 / 1; }
+.drow h3 { display: flex; align-items: baseline; flex-wrap: nowrap; white-space: nowrap; font-size: min(clamp(28px, 3.4vw, 44px), 10.5cqi); }
+.drow h3 small { flex: none; }
+@media (max-width: 860px) {
+  .dial-rows { min-height: 0; }
+  .drow h3 { font-size: min(26px, 10.5cqi); }
+}
+.no-motion .dial-rows { display: block; }
+.no-motion .drow { grid-area: auto; }
+
+/* AI 讀取線的標籤：兩段各自不斷行，空間不夠時整段換到下一行 */
+.linear-k { flex-wrap: wrap; gap: 2px 14px; }
+.linear-k > span { white-space: nowrap; }
